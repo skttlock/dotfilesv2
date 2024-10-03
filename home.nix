@@ -12,7 +12,10 @@
 
 # install nixpkgs here to your environment
   home.packages = [
+	pkgs.starship
 	pkgs.vim
+	pkgs.ranger
+	
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -34,21 +37,31 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-	
+
+    #".bashrc".source = dotfiles/bashrc;
     #".vimrc".source = dotfiles/vimrc;
 
     # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
+    # ".bashrc".text = ''
     # '';
   };
 
 # manage environment variables here
   home.sessionVariables = {
-    EDITOR = "vim";
+ #   VISUAL = "vim"; # doesn't seem to have any effect... check .bashrc
+#    EDITOR = VISUAL;
   };
+
+# enable and configure programs below...
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+# enable starship and configure
+	programs.starship = { 
+		enable = true;
+		# config written to ~/.config/starship.toml
+		settings = {};
+	};
+
 }
