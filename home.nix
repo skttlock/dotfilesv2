@@ -13,7 +13,7 @@
 # install nixpkgs here to your environment
   home.packages = [
 	pkgs.starship
-	pkgs.vim
+	#pkgs.vim
 	pkgs.ranger
 	
 
@@ -68,6 +68,7 @@
     programs.vim = {
         enable = true;
         plugins = with pkgs.vimPlugins; [ vim-commentary ];
+		settings = {};
     };
 
 }
