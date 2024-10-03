@@ -5,7 +5,10 @@
 
 ## To-Do
 - [x] generate barebone
-- [ ] test barebone
-- [ ] add vim
+- [x] test barebone
+- [x] add vim
 - [ ] config vim
-- [ ] move vim stuff to vim.nix
+- [ ] move vim stuff to vim.nix (modularize)
+- [ ] vim plugins
+- [ ] vim snippets
+    - commit snippets?
