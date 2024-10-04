@@ -48,7 +48,16 @@ programs.vim = {
   enable = true;
   defaultEditor = true;
   plugins = with pkgs.vimPlugins; [ vim-commentary ];
-  settings = {};
+  settings = {
+    smartcase = true;
+
+    expandtab = true;
+    shiftwidth = 4;
+    tabstop = 4;
+
+    relativenumber = true;
+    number = true;
+  };
   extraConfig = ''
     filetype on
     filetype plugin on
@@ -61,14 +70,6 @@ programs.vim = {
     set foldlevel=1
 
     set scrolloff=10
-    set smartcase
-
-    set expandtab
-    set tabstop=4
-    set shiftwidth=4
-
-    set number
-    set relativenumber
 
     set wildmenu
     " Make wildmenu behave like similar to Bash completion.
@@ -79,7 +80,6 @@ programs.vim = {
     set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
     set showmode
-
   '';
 };
 
