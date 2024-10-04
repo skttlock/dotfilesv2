@@ -97,15 +97,14 @@ programs.bash = {
 # enable STARSHIP and configure
 programs.starship = { 
   enable = true;
-# config written to ~/.config/starship.toml
-settings = {};
+  settings = {};
 };
 
 # enable VIM and configure
 programs.vim = {
   enable = true;
   defaultEditor = true;
-  plugins = with pkgs.vimPlugins; [ vim-endwise vim-commentary vim-surround vim-fugitive vim-nix ];
+  plugins = with pkgs.vimPlugins; [ vim-endwise vim-commentary vim-surround vim-fugitive vim-snipmate vim-snippets vim-nix ];
   settings = {
     smartcase = true;
 
@@ -125,7 +124,7 @@ programs.vim = {
     syntax on
 
     set foldmethod=indent
-    set foldlevel=1
+    set foldlevel=0
 
     set scrolloff=20
 
@@ -144,6 +143,9 @@ programs.vim = {
 # enable GIT and configure
 programs.git = {
   enable = true;
+  settings = {
+
+  };
 };
 
 programs.ranger = {
