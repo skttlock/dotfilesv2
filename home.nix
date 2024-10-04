@@ -101,11 +101,11 @@ programs.starship = {
 settings = {};
 };
 
-# enable vim and configure
+# enable VIM and configure
 programs.vim = {
   enable = true;
   defaultEditor = true;
-  plugins = with pkgs.vimPlugins; [ vim-commentary vim-nix ];
+  plugins = with pkgs.vimPlugins; [ vim-endwise vim-commentary vim-surround vim-fugitive vim-nix ];
   settings = {
     smartcase = true;
 
@@ -140,6 +140,16 @@ programs.vim = {
     set showmode
   '';
 };
+
+# enable GIT and configure
+programs.git = {
+  enable = true;
+};
+
+programs.ranger = {
+  enable = true;
+};
+
 
 # not preferred: install nixpkgs here to your environment
 home.packages = [
