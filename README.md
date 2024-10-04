@@ -11,6 +11,10 @@
 - [x] config vim
 - [ ] move vim stuff to vim.nix (modularize)
 - [/] vim plugins
-- [ ] vim snippets
+- [/] vim snippets
     - commit snippets?
 - [x] bashrc, profile
+- [ ] configure less
+- [ ] stylix?
+- [ ] sops-nix
+    - ssh keys

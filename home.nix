@@ -152,9 +152,17 @@ programs.git = {
   };
 };
 
+# enable GH
+# enable FZF
+# enable BAT
+# enable TMUX
+
+# enable RANGER and configure
 programs.ranger = {
   enable = true;
 };
+
+
 
 
 # not preferred: install nixpkgs here to your environment
