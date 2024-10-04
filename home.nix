@@ -1,74 +1,104 @@
 { config, pkgs, ... }:
 
 {
-  #description = "Fedora configuration, Oct 2024";
+#description = "Fedora configuration, Oct 2024";
 
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "joshuaforeman";
-  home.homeDirectory = "/home/joshuaforeman";
-  home.stateVersion = "24.05"; # josh u are not smart enough to change this
-
-# install nixpkgs here to your environment
-  home.packages = [
-	pkgs.starship
-	#pkgs.vim
-	pkgs.ranger
-	
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+# Home Manager needs a bit of information about you and the paths it should
+# manage.
+home.username = "joshuaforeman";
+home.homeDirectory = "/home/joshuaforeman";
+home.stateVersion = "24.05"; # josh u are not smart enough to change this
 
 # manage dotfiles here
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+home.file = {
+# # Building this configuration will create a copy of 'dotfiles/screenrc' in
+# # the Nix store. Activating the configuration will then make '~/.screenrc' a
+# # symlink to the Nix store copy.
+# ".screenrc".source = dotfiles/screenrc;
 
-    #".bashrc".source = dotfiles/bashrc;
-    #".vimrc".source = dotfiles/vimrc;
+#".bashrc".source = dotfiles/bashrc;
+# ".vimrc".source = dotfiles/.vimrc;
 
-    # # You can also set the file content immediately.
-    # ".bashrc".text = ''
-    # '';
-  };
+# # You can also set the file content immediately.
+# ".bashrc".text = ''
+# '';
+};
 
 # manage environment variables here
-  home.sessionVariables = {
- #   VISUAL = "vim"; # doesn't seem to have any effect... check .bashrc
+home.sessionVariables = {
+#   VISUAL = "vim"; # doesn't seem to have any effect... check .bashrc
 #    EDITOR = VISUAL;
-  };
+};
 
 # enable and configure programs below...
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+# Let Home Manager install and manage itself.
+programs.home-manager.enable = true;
 
 # enable starship and configure
-	programs.starship = { 
-		enable = true;
-		# config written to ~/.config/starship.toml
-		settings = {};
-	};
+programs.starship = { 
+  enable = true;
+# config written to ~/.config/starship.toml
+settings = {};
+};
 
 # enable vim and configure
-    programs.vim = {
-        enable = true;
-        plugins = with pkgs.vimPlugins; [ vim-commentary ];
-		settings = {};
-    };
+programs.vim = {
+  enable = true;
+  defaultEditor = true;
+  plugins = with pkgs.vimPlugins; [ vim-commentary ];
+  settings = {};
+  extraConfig = ''
+    filetype on
+    filetype plugin on
+    filetype indent on
+    set autoindent
+
+    syntax on
+
+    set foldmethod=indent
+    set foldlevel=1
+
+    set scrolloff=10
+    set smartcase
+
+    set expandtab
+    set tabstop=4
+    set shiftwidth=4
+
+    set number
+    set relativenumber
+
+    set wildmenu
+    " Make wildmenu behave like similar to Bash completion.
+    set wildmode=list:longest
+
+    " There are certain files that we would never want to edit with Vim.
+    " Wildmenu will ignore files with these extensions.
+    set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+    set showmode
+
+  '';
+};
+
+# not preferred: install nixpkgs here to your environment
+home.packages = [
+
+
+# # It is sometimes useful to fine-tune packages, for example, by applying
+# # overrides. You can do that directly here, just don't forget the
+# # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+# # fonts?
+# (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+# # You can also create simple shell scripts directly inside your
+# # configuration. For example, this adds a command 'my-hello' to your
+# # environment:
+# (pkgs.writeShellScriptBin "my-hello" ''
+#   echo "Hello, ${config.home.username}!"
+# '')
+];
 
 }
