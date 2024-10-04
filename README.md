@@ -13,6 +13,7 @@
 - [/] vim plugins
 - [/] vim snippets
     - commit snippets?
+        - [ ] gittemplate
 - [x] bashrc, profile
 - [ ] configure less
 - [ ] stylix?
