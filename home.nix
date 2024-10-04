@@ -46,6 +46,7 @@ programs.bash = {
 
   shellAliases = {
     hms = "home-manager switch";
+    hme = "home-manager edit";
     ls = "lsd";
     lsa = "lsd --all";
     lstree = "lsd --tree";
@@ -167,6 +168,7 @@ programs.ranger = {
 
 # not preferred: install nixpkgs here to your environment
 home.packages = [
+  pkgs.tldr
 
 
 # # It is sometimes useful to fine-tune packages, for example, by applying
