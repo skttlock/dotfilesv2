@@ -145,8 +145,10 @@ programs.git = {
   enable = true;
   userName = "Joshua Foreman";
   userEmail = "9174473+skttlock@users.noreply.github.com"; # private, github-provided, commit email
-  settings = {
-
+  extraConfig = {
+    init = {
+      defaultBranch = "main";
+    };
   };
 };
 
