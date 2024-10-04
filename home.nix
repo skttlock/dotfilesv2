@@ -30,74 +30,71 @@ home.file = {
 # '';
 };
 
-# manage environment variables here
-home.sessionVariables = {
-#   VISUAL = "vim"; # doesn't seem to have any effect... check .bashrc
-#   EDITOR = VISUAL;
-};
-
 # enable and configure programs below...
 
 # Let Home Manager install and manage itself.
 programs.home-manager.enable = true;
 
-# 'enable' bash and configure
+# 'enable' BASH and configure
 programs.bash = {
   enable = true;
   sessionVariables = {
-    # NIX_PATH = "${pkgs.lib.getEnv "HOME"}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}";
-        # NIX_PATH = "${pkgs.lib.getEnv "HOME"}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+":$NIX_PATH"}";
-        NIX_PATH = if existingNixPath != "" then "${nixPath}:${existingNixPath}" else nixPath;
-      };
+    NIX_PATH = if existingNixPath != "" then "${nixPath}:${existingNixPath}" else nixPath;
+    EDITOR = "vim";
+    VISUAL = "vim";
+  };
 
-      shellAliases = {
-        hms = "home-manager switch";
-        ls = "lsd";
-      };
-      profileExtra = ''
+  shellAliases = {
+    hms = "home-manager switch";
+    ls = "lsd";
+    lsa = "lsd --all";
+    lstree = "lsd --tree";
+  };
+  profileExtra = ''
 # .bash_profile
 
 # Get the aliases and functions
-        if [ -f ~/.bashrc ]; then
-        . ~/.bashrc
-        fi
+    if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+    fi
 
 # User specific environment and startup programs
 
-        if [ -e /home/joshuaforeman/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joshuaforeman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-      '';
-      bashrcExtra = ''
+    if [ -e /home/joshuaforeman/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joshuaforeman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+  '';
+
+  bashrcExtra = ''
 # .bashrc
 
 # Source global definitions
-        if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-        fi
+    if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+    fi
 
 # User specific environment
-        if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-        PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-        fi
-        export PATH
+    if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    fi
+    export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-        if [ -d ~/.bashrc.d ]; then
-        for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-        done
-        fi
-        unset rc
+    if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+    . "$rc"
+    fi
+    done
+    fi
+    unset rc
 
-        eval "$(starship init bash)"
-      '';
-    };
+    eval "$(starship init bash)"
+  '';
+};
 
-# enable starship and configure
+# enable STARSHIP and configure
 programs.starship = { 
   enable = true;
 # config written to ~/.config/starship.toml
@@ -108,7 +105,7 @@ settings = {};
 programs.vim = {
   enable = true;
   defaultEditor = true;
-  plugins = with pkgs.vimPlugins; [ vim-commentary ];
+  plugins = with pkgs.vimPlugins; [ vim-commentary vim-nix ];
   settings = {
     smartcase = true;
 
@@ -130,7 +127,7 @@ programs.vim = {
     set foldmethod=indent
     set foldlevel=1
 
-    set scrolloff=10
+    set scrolloff=20
 
     set wildmenu
     " Make wildmenu behave like similar to Bash completion.
@@ -161,5 +158,10 @@ home.packages = [
 #   echo "Hello, ${config.home.username}!"
 # '')
 ];
+
+# manage environment variables here
+home.sessionVariables = {
+};
+
 
 }
