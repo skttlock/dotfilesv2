@@ -97,6 +97,10 @@ in
       vim-snipmate
       vim-snippets
       vim-polyglot
+
+      ale
+      vim-illuminate
+
       vim-nix
       vimtex
 
