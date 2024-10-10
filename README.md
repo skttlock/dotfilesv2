@@ -11,6 +11,7 @@
 - [x] config vim
 - [ ] move vim stuff to vim.nix (modularize)
 - [/] vim plugins
+    - [/] LSP
 - [/] vim snippets
     - commit snippets?
         - [ ] gittemplate

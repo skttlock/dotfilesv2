@@ -4,8 +4,15 @@ let
   homeDir = builtins.getEnv "HOME";
   existingNixPath = builtins.getEnv "NIX_PATH";
   nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    # When using a different channel you can use `ref = "nixos-<version>"` to set it here
+  });
 in
 {
+  imports = [
+    nixvim.homeManagerModules.nixvim
+  ];
   #description = "Fedora configuration, Oct 2024";
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -98,7 +105,6 @@ in
       vim-snippets
       vim-polyglot
 
-      ale
       vim-illuminate
 
       vim-nix
@@ -131,7 +137,7 @@ in
       set foldmethod=indent
       set foldlevel=0
 
-      set scrolloff=30
+      set scrolloff=29
 
       set wildmenu
       " Make wildmenu behave like similar to Bash completion.
@@ -143,6 +149,11 @@ in
 
       set showmode
     '';
+  };
+
+  # enable NIXVIM and configure
+  programs.nixvim = {
+    enable = true;
   };
 
   # enable GIT and configure
