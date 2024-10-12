@@ -29,7 +29,7 @@ in
   # testing some window managers
   xsession.windowManager.xmonad = {
     enable = true;
-
+    enableContribAndExtras = true;
   };
 
   # 'enable' BASH and configure
