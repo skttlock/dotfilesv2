@@ -178,7 +178,6 @@ in
       rainbow-delimiters.enable = true;
       vim-css-color.enable = true;
       illuminate.enable = true;
-      twilight.enable = true;
 
       render-markdown.enable = true;
       gitsigns = {
@@ -276,6 +275,7 @@ in
 
   # manage dotfiles here
   home.file = {
+    # "../etc/nixos/configuration.nix = dotfiles/configuration.nix;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -308,6 +308,7 @@ in
   # '')
 
   # creat backup scripts here?
+  # or just link em..?
 ];
 
   # manage environment variables here
