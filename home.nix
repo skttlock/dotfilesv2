@@ -92,29 +92,10 @@ in
     settings = {};
   };
 
-  # enable VIM and configure
-  programs.vim = {
+  # enable NIXVIM and configure
+  programs.nixvim = {
     enable = true;
-    defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      vim-endwise
-      vim-commentary
-      vim-surround
-      vim-fugitive
-      vim-snipmate
-      vim-snippets
-      vim-polyglot
-
-      vim-illuminate
-
-      vim-nix
-      vimtex
-
-      vim-colors-solarized
-      vim-airline
-      vim-airline-themes
-    ];
-    settings = {
+    opts = {
       smartcase = true;
 
       expandtab = true;
@@ -124,15 +105,13 @@ in
       relativenumber = true;
       number = true;
     };
-    extraConfig = ''
+    extraConfigVim = ''
       filetype on
       filetype plugin on
       filetype indent on
       set autoindent
 
       syntax on
-      colorscheme solarized
-      let g:airline_theme='solarized'
 
       set foldmethod=indent
       set foldlevel=0
@@ -149,11 +128,60 @@ in
 
       set showmode
     '';
-  };
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    colorschemes.base16 = {
+      enable = true;
+      colorscheme = "solarized-dark";
+    };
+    # auto-dark
+    plugins = {
+      treesitter.enable = true;
+      lsp = {
+        enable = true;
+        inlayHints = true;
+        servers.java_language_server.enable = true;
+      };
+      lsp-lines.enable = true;
+      lspkind.enable = true;
+      airline = {
+        enable = true;
+        settings.theme = "dark";
+      };
+      which-key.enable = true;
+      commentary.enable = true;
+      emmet.enable = true;
+      neotest.enable = true;
+      dap.enable = true;
+      lint.enable = true;
+      nvim-surround.enable = true;
+      luasnip.enable = true;
+      illuminate.enable = true;
+      # helpview.enable = true;
+      # fugitive.enable = true;
+      # fzf-lua.enable = true;
+      # neorg.enable = true;
+      # neotest.enable = true;
+      # obsidian.enable = true;
 
-  # enable NIXVIM and configure
-  programs.nixvim = {
-    enable = true;
+      # vim-endwise
+      # vim-commentary
+      # vim-surround
+      # vim-fugitive
+      # vim-snipmate
+      # vim-snippets
+      # vim-polyglot
+
+      # vim-illuminate
+
+      # vim-nix
+      # vimtex
+
+      # vim-colors-solarized
+      # vim-airline
+      # vim-airline-themes
+    };
   };
 
   # enable GIT and configure
