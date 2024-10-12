@@ -26,6 +26,12 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # testing some window managers
+  xsession.windowManager.xmonad = {
+    enable = true;
+
+  };
+
   # 'enable' BASH and configure
   programs.bash = {
     enable = true;
