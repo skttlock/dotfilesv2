@@ -44,7 +44,7 @@ in
     shellAliases = {
       hms = "home-manager switch";
       hme = "home-manager edit";
-      ls = "lsd;";
+      ls = "lsd";
       lsa = "lsd --all";
       lstree = "lsd --tree --depth=3";
     };
@@ -237,8 +237,8 @@ in
     userName = "Joshua Foreman";
     userEmail = "9174473+skttlock@users.noreply.github.com"; # private, github-provided, commit email
     aliases = {
-      unstage = "git reset HEAD";
-      uncache = "git rm --cached";
+      unstage = "reset HEAD";
+      uncache = "rm --cached";
     };
     extraConfig = {
       init = {
@@ -253,6 +253,7 @@ in
   # enable LSD
   programs.lsd = {
     enable = true;
+    enableAliases = false;
   };
 
   # enable GH
