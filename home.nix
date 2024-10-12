@@ -26,6 +26,26 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # testing sway
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      # Use kitty as default terminal
+      terminal = "kitty";
+      startup = [
+        # Launch Firefox on start
+        {command = "firefox";}
+      ];
+    };
+  };
+
+
+
   # 'enable' BASH and configure
   programs.bash = {
     enable = true;
