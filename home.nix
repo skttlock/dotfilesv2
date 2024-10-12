@@ -38,7 +38,7 @@ in
     shellAliases = {
       hms = "home-manager switch";
       hme = "home-manager edit";
-      ls = "lsd";
+      ls = "lsd;";
       lsa = "lsd --all";
       lstree = "lsd --tree --depth=3";
     };
@@ -143,9 +143,15 @@ in
         enable = true;
         inlayHints = true;
         servers = {
+          bashls.enable = true;
           nil_ls.enable = true;
           java_language_server.enable = true;
           ccls.enable = true;
+
+          html.enable = true;
+          cssls.enable = true;
+          denols.enable = true;
+          marksman.enable = true;
         };
       };
       lsp-lines.enable = true;
@@ -160,7 +166,12 @@ in
         settings.theme = "dark";
       };
       web-devicons.enable = true;
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        settings = {
+          notify = true;
+        };
+      };
       # helpview.enable = true;
       # fzf-lua.enable = true;
 
@@ -219,6 +230,10 @@ in
     enable = true;
     userName = "Joshua Foreman";
     userEmail = "9174473+skttlock@users.noreply.github.com"; # private, github-provided, commit email
+    aliases = {
+      unstage = "git reset HEAD";
+      uncache = "git rm --cached";
+    };
     extraConfig = {
       init = {
         defaultBranch = "main";

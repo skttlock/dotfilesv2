@@ -20,3 +20,8 @@
 - [ ] sops-nix
     - ssh keys
 - [x] switch to nixvim
+- [ ] tiling with xmonad?
+    - [ ] define some layouts:
+        - school
+        - work
+        - play
