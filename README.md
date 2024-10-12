@@ -10,6 +10,39 @@
     - [ ]
 - [ ] gittemplate
 - [ ] tiling + layouts
+    - sway?
+        - login manager:
+        - "no diplay manager needed"
+        - input configuration...
+        - wallpapers: swaybg
+            - `output HDMI-A-1 bg ~/wallpaper.png stretch` <- example
+        - bar: waybar ~~swaybar~~
+        - screenshots: flameshot
+        - program launcher: tofi?
+        - config:
+            - appearance:
+                - color: solarized?
+                - darkmode: darkman
+                - fonts:
+                - gaps: small
+            - layouts/workspaces:
+                - notes
+                    - window, horizontal split right, stacked: obsidian vaults
+                    -
+                - code
+                    - window, horizontal split: terminal
+                    -
+                - browse
+                    - window, horizontal split: firefox
+                - game
+        - other plugins:
+            - wlr-which-key
+            - swaylock
+            - swayidle
+            - swaync
+            - swayosd
+
+
     - [ ] define some layouts:
         - school
         - work
@@ -18,6 +51,8 @@
     - ssh keys
 - [/] nixvim plugins
     - [/] snippets
+    - [ ] startup time
+    - [ ] lazyload
 - [ ] modularize??
 - [ ] configure less
 - [ ] stylix?
