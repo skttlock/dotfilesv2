@@ -137,50 +137,70 @@ in
     };
     # auto-dark
     plugins = {
-      treesitter.enable = true;
+
+      # language tools
       lsp = {
         enable = true;
         inlayHints = true;
         servers.java_language_server.enable = true;
       };
       lsp-lines.enable = true;
+      lsp-status.enable = true;
       lspkind.enable = true;
+      treesitter.enable = true;
+      trouble.enable = true;
+
+      # editor tools
       airline = {
         enable = true;
         settings.theme = "dark";
       };
+      web-devicons.enable = true;
       which-key.enable = true;
-      commentary.enable = true;
-      emmet.enable = true;
-      neotest.enable = true;
-      dap.enable = true;
-      lint.enable = true;
-      nvim-surround.enable = true;
-      luasnip.enable = true;
-      illuminate.enable = true;
       # helpview.enable = true;
-      # fugitive.enable = true;
       # fzf-lua.enable = true;
+
+      rainbow-delimiters.enable = true;
+      vim-css-color.enable = true;
+      illuminate.enable = true;
+      twilight.enable = true;
+
+      render-markdown.enable = true;
+      gitsigns.enable = true;
+
+      # editing tools
+      commentary.enable = true;
+      nvim-surround.enable = true;
+      endwise.enable = true;
+      lint.enable = true;
+      trim.enable = true;
+
+      # programming tools
+      luasnip.enable = true;
+      nvim-snippets.enable = true;
+      friendly-snippets.enable = true;
+      emmet.enable = true;
+      dap.enable = true;
+      neotest.enable = true;
+      fugitive.enable = true;
+
+      # other tools
+      nix.enable = true;
+      # vimtex.enable = true;
+
+
+    # maybe later
+    # project-nvim.enable = true;
+      # telescope.enable = true;
       # neorg.enable = true;
-      # neotest.enable = true;
-      # obsidian.enable = true;
-
-      # vim-endwise
-      # vim-commentary
-      # vim-surround
-      # vim-fugitive
-      # vim-snipmate
-      # vim-snippets
-      # vim-polyglot
-
-      # vim-illuminate
-
-      # vim-nix
-      # vimtex
-
-      # vim-colors-solarized
-      # vim-airline
-      # vim-airline-themes
+      # ollama.enable = true;
+      # typst-vim.enable = true;
+      # sniprun.enable = true;
+      # rest.enable = true;
+      # refactoring.enable = true;
+      # otter.enable = true;
+      # mini.enable = true;
+      # guess-indent.enable = true;
     };
   };
 
