@@ -4,24 +4,20 @@
 *note* to surpress warning stating that `xyz/per-user/root/channels` does not exist, make said directories.
 
 ## To-Do
-- [x] generate barebone
-- [x] test barebone
-- [x] add vim
-- [x] config vim
-- [x] move vim stuff to vim.nix (modularize)
-- [x] vim plugins
-    - [x] LSP
-    - [/] vim snippets
-        - commit snippets?
-            - [ ] gittemplate
-- [x] bashrc, profile
-- [ ] configure less
-- [ ] stylix?
-- [ ] sops-nix
-    - ssh keys
-- [x] switch to nixvim
-- [ ] tiling with xmonad?
+- [ ] `./configuration.nix`
+    - [ ] generate via nix command
+    - [ ] symlink via home-manager
+    - [ ]
+- [ ] gittemplate
+- [ ] tiling + layouts
     - [ ] define some layouts:
         - school
         - work
         - play
+- [ ] sops-nix
+    - ssh keys
+- [/] nixvim plugins
+    - [/] snippets
+- [ ] modularize??
+- [ ] configure less
+- [ ] stylix?
