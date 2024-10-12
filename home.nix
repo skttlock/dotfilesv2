@@ -26,12 +26,6 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # testing some window managers
-  xsession.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-  };
-
   # 'enable' BASH and configure
   programs.bash = {
     enable = true;
@@ -312,6 +306,8 @@ in
   # (pkgs.writeShellScriptBin "my-hello" ''
   #   echo "Hello, ${config.home.username}!"
   # '')
+
+  # creat backup scripts here?
 ];
 
   # manage environment variables here
