@@ -9,10 +9,10 @@ let
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
   });
 in
-{
-  imports = [
-    nixvim.homeManagerModules.nixvim
-  ];
+  {
+    imports = [
+      nixvim.homeManagerModules.nixvim
+    ];
   #description = "Fedora configuration, Oct 2024";
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -87,7 +87,7 @@ in
   };
 
   # enable STARSHIP and configure
-  programs.starship = { 
+  programs.starship = {
     enable = true;
     settings = {};
   };
@@ -142,7 +142,11 @@ in
       lsp = {
         enable = true;
         inlayHints = true;
-        servers.java_language_server.enable = true;
+        servers = {
+          nil_ls.enable = true;
+          java_language_server.enable = true;
+          ccls.enable = true;
+        };
       };
       lsp-lines.enable = true;
       lsp-status.enable = true;
@@ -166,7 +170,13 @@ in
       twilight.enable = true;
 
       render-markdown.enable = true;
-      gitsigns.enable = true;
+      gitsigns = {
+        enable = true;
+        settings = {
+          current_line_blame = true;
+          current_line_blame_opts.delay = 500;
+        };
+      };
 
       # editing tools
       commentary.enable = true;
@@ -177,7 +187,7 @@ in
 
       # programming tools
       luasnip.enable = true;
-      nvim-snippets.enable = true;
+      # vim-snippets.enable = true;
       friendly-snippets.enable = true;
       emmet.enable = true;
       dap.enable = true;
@@ -280,7 +290,7 @@ in
   # (pkgs.writeShellScriptBin "my-hello" ''
   #   echo "Hello, ${config.home.username}!"
   # '')
-  ];
+];
 
   # manage environment variables here
   home.sessionVariables = {
