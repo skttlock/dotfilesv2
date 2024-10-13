@@ -60,6 +60,7 @@ in
       hme = "home-manager edit";
       ls = "lsd";
       lsa = "lsd --all";
+      lst = "lsd --tree";
       lstree = "lsd --tree --depth=3";
     };
     profileExtra = ''
@@ -288,6 +289,37 @@ in
   # enable RANGER and configure
   programs.ranger = {
     enable = true;
+  };
+
+  # enable BORGMATIC and configure
+  programs.borgmatic = {
+    enable = true;
+    backups = {
+      personal = {
+        location = {
+          sourceDirectories = [ "/path/to/source" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+      pictures = {
+        location = {
+          sourceDirectories = [ "/path/to/source" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+      projects = {
+        location = {
+          sourceDirectories = [ "/path/to/Projects" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+      vaults = {
+        location = {
+          sourceDirectories = [ "/path/to/vaults" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+    };
   };
 
 

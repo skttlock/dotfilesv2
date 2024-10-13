@@ -56,3 +56,10 @@
 - [ ] modularize??
 - [ ] configure less
 - [ ] stylix?
+- [ ] scripts
+    - [ ] back up scripts
+        - --local
+        - --cloud
+        - --external
+        - --fromPath    ?
+        - --toPath      ?
