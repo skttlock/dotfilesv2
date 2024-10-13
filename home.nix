@@ -27,10 +27,10 @@ in
   programs.home-manager.enable = true;
 
   # testing sway
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
