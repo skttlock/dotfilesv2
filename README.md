@@ -56,6 +56,8 @@
 - [ ] modularize??
 - [ ] configure less
 - [ ] stylix?
+    - note:
+        - vim cursor color changes when over a character with foreground-color or somethin
 - [ ] scripts
     - [ ] back up scripts
         - --local

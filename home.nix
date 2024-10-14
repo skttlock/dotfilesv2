@@ -35,11 +35,11 @@ in
     enable = true;
     config = rec {
       modifier = "Mod4";
-      # Use kitty as default terminal
-      terminal = "kitty";
+      # Use wezterm as default terminal
+      terminal = "wezterm";
       startup = [
         # Launch Firefox on start
-        {command = "firefox";}
+        # {command = "firefox";}
       ];
     };
   };
@@ -314,6 +314,18 @@ in
         };
       };
       vaults = {
+        location = {
+          sourceDirectories = [ "/path/to/vaults" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+      music = {
+        location = {
+          sourceDirectories = [ "/path/to/vaults" ];
+          repositories = [ "/path/to/repo" ];
+        };
+      };
+      video = {
         location = {
           sourceDirectories = [ "/path/to/vaults" ];
           repositories = [ "/path/to/repo" ];
