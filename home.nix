@@ -33,13 +33,17 @@ in
   # };
   wayland.windowManager.sway = {
     enable = true;
-    config = rec {
+    config = {
       modifier = "Mod4";
       # Use wezterm as default terminal
       terminal = "wezterm";
       startup = [
         # Launch Firefox on start
         # {command = "firefox";}
+        # Launch Obsidian on start
+        # {command = "obsidian";}
+        # Launch a terminal on start
+        # {command = ;}
       ];
     };
   };
@@ -105,6 +109,11 @@ in
 
       eval "$(starship init bash)"
     '';
+  };
+
+  # enable SSH and configure
+  programs.ssh = {
+    enable = true;
   };
 
   # enable STARSHIP and configure
@@ -251,6 +260,10 @@ in
     userName = "Joshua Foreman";
     userEmail = "9174473+skttlock@users.noreply.github.com"; # private, github-provided, commit email
     aliases = {
+      aa = "add --all";
+      cm = "commit --message";
+      lo = "log --oneline";
+      last = "log -1 HEAD --stat";
       unstage = "reset HEAD";
       uncache = "rm --cached";
     };
@@ -292,47 +305,51 @@ in
   };
 
   # enable BORGMATIC and configure
-  programs.borgmatic = {
-    enable = true;
-    backups = {
-      personal = {
-        location = {
-          sourceDirectories = [ "/path/to/source" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-      pictures = {
-        location = {
-          sourceDirectories = [ "/path/to/source" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-      projects = {
-        location = {
-          sourceDirectories = [ "/path/to/Projects" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-      vaults = {
-        location = {
-          sourceDirectories = [ "/path/to/vaults" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-      music = {
-        location = {
-          sourceDirectories = [ "/path/to/vaults" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-      video = {
-        location = {
-          sourceDirectories = [ "/path/to/vaults" ];
-          repositories = [ "/path/to/repo" ];
-        };
-      };
-    };
-  };
+  # programs.borgmatic = {
+  #   enable = true;
+  #   backups = {
+  #     vaults = {
+  #       location = {
+  #         sourceDirectories = [
+  #           "/$HOME/Documents/joshua-journal"
+  #           "/$HOME/Documents/my-wiki"
+  #           "/$HOME/Documents/school-notes"
+  #         ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #     projects = {
+  #       location = {
+  #         sourceDirectories = [ "/$HOME/Documents/Projects" ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #     pictures = {
+  #       location = {
+  #         sourceDirectories = [ "/$HOME/Pictures ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #     music = {
+  #       location = {
+  #         sourceDirectories = [ "/$HOME/Music" ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #     video = {
+  #       location = {
+  #         sourceDirectories = [ "/$HOME/Videos" ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #     library = {
+  #       location = {
+  #         sourceDirectories = [ "/$HOME/Documents/Library" ];
+  #         repositories = [ "/path/to/repo" ];
+  #       };
+  #     };
+  #   };
+  # };
 
 
 
