@@ -64,8 +64,9 @@ in
       hme = "home-manager edit";
       ls = "lsd";
       lsa = "lsd --all";
-      lst = "lsd --tree";
-      lstree = "lsd --tree --depth=3";
+      lst = "lsd --tree --depth-3";
+      lstre = "lsd --tree --depth=4";
+      lstree = "lsd --tree --depth=5";
     };
     profileExtra = ''
       # .bash_profile
@@ -112,9 +113,9 @@ in
   };
 
   # enable SSH and configure
-  programs.ssh = {
-    enable = true;
-  };
+  # programs.ssh = {
+  #   enable = true;
+  # };
 
   # enable STARSHIP and configure
   programs.starship = {
@@ -216,7 +217,8 @@ in
         enable = true;
         settings = {
           current_line_blame = true;
-          current_line_blame_opts.delay = 500;
+          current_line_blame_opts.delay = 10;
+          current_line_blame_opts.virt_text_pos = "right_align";
         };
       };
 
