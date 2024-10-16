@@ -173,17 +173,19 @@ in
         enable = true;
         inlayHints = true;
         servers = {
-          bashls.enable = true;
-          nil_ls.enable = true;
-          java_language_server.enable = true;
-          ccls.enable = true;
+          bashls.enable = true;     # bash
+          nil_ls.enable = true;     # nix
+          ccls.enable = true;       # c/c++
+          # java_language_server.enable = true;
+          jdtls.enable = true;
 
-          html.enable = true;
-          cssls.enable = true;
-          denols.enable = true;
-          marksman.enable = true;
+          html.enable = true;       # html
+          cssls.enable = true;      # css
+          denols.enable = true;     # js
+          marksman.enable = true;   # markdown
         };
       };
+      # nvim-jdtls.enable = true;     # java
       lsp-lines.enable = true;
       lsp-status.enable = true;
       lspkind.enable = true;
@@ -264,6 +266,8 @@ in
       cm = "commit --message";
       lo = "log --oneline";
       last = "log -1 HEAD --stat";
+      # search log by author
+      # short diff
       unstage = "reset HEAD";
       uncache = "rm --cached";
     };
