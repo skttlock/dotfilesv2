@@ -62,11 +62,15 @@ in
     shellAliases = {
       hms = "home-manager switch";
       hme = "home-manager edit";
+
       ls = "lsd";
       lsa = "lsd --all";
-      lst = "lsd --tree --depth-3";
-      lstre = "lsd --tree --depth=4";
-      lstree = "lsd --tree --depth=5";
+      lst = "lsd --tree --depth=3";
+      lstr = "lsd --tree --depth=5";
+      lstre = "lsd --tree --depth=5";
+      lstree = "lsd --tree --depth=4";
+
+      ns = "nix-shell";
     };
     profileExtra = ''
       # .bash_profile
@@ -169,7 +173,10 @@ in
     # auto-dark
     plugins = {
 
-      # language tools
+      lz-n = { # lazy loading
+        enable = true;
+      };
+
       lsp = {
         enable = true;
         inlayHints = true;
@@ -177,8 +184,8 @@ in
           bashls.enable = true;     # bash
           nil_ls.enable = true;     # nix
           ccls.enable = true;       # c/c++
-          # java_language_server.enable = true;
-          jdtls.enable = true;
+          zls.enable = true;        # zig
+          jdtls.enable = true;      # java... tbd
 
           html.enable = true;       # html
           cssls.enable = true;      # css
@@ -186,12 +193,17 @@ in
           marksman.enable = true;   # markdown
         };
       };
-      # nvim-jdtls.enable = true;     # java
       lsp-lines.enable = true;
       lsp-status.enable = true;
       lspkind.enable = true;
       treesitter.enable = true;
       trouble.enable = true;
+
+      # cmp...
+      luasnip.enable = true;
+      # vim-snippets.enable = true;
+      # friendly-snippets.enable = true;
+      # lint.enable = true;
 
       # editor tools
       airline = {
@@ -226,17 +238,12 @@ in
       commentary.enable = true;
       nvim-surround.enable = true;
       endwise.enable = true;
-      lint.enable = true;
       trim.enable = true;
 
-      # programming tools
-      luasnip.enable = true;
-      # vim-snippets.enable = true;
-      friendly-snippets.enable = true;
-      emmet.enable = true;
-      dap.enable = true;
-      neotest.enable = true;
-      fugitive.enable = true;
+      # emmet.enable = true;
+      # dap.enable = true;
+      # neotest.enable = true;
+      # fugitive.enable = true;
 
       # other tools
       nix.enable = true;
@@ -272,6 +279,8 @@ in
       # short diff
       unstage = "reset HEAD";
       uncache = "rm --cached";
+
+      s = "switch";
     };
     extraConfig = {
       init = {
