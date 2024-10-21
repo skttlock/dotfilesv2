@@ -131,6 +131,10 @@ in
   programs.nixvim = {
     enable = true;
 
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
     opts = {
       smartcase = true;
 
@@ -171,19 +175,7 @@ in
       ### CURRENT
       nix.enable = true;
 
-      # ui
-      which-key = {
-        enable = true;
-        settings = {
-          notify = true;
-        };
-      };
-      #auto-dark plugin needed
-
-      # editing tools
-      commentary.enable = true;
-
-      ### TESTING
+      # mini.nvim, a collection of 40+ plugins
       mini = { 
         enable = true;
         modules = {
@@ -194,6 +186,8 @@ in
           pairs = {};
           surround = {};
 
+          comment = {};
+
           # "general workflow"
           bracketed = {};
           files = {};
@@ -203,25 +197,45 @@ in
           # "appearance"
           animate = {};
           hues = {
-              background = "#1c2617";
-              foreground = "#c3c8c2";
-              n_hues = 8;
-              plugins = {
-                default = true;
-              };
+            background = "#1c2617";
+            foreground = "#c3c8c2";
+            n_hues = 8;
+            plugins = {
+              default = true;
+            };
           };
           icons = {};
           notify = {};
+
+          #### TESTING
+          statusline = {};
+          git = {};
+          diff = {};
+
         };
       };
 
+      # ui
+      which-key = {
+        enable = true;
+        settings = {
+          notify = true;
+        };
+      };
 
+      ### TESTING
+
+
+      ### TO BE ADDED
+
+      # lazy loading
+      #lz-n = {
+      #  enable = true;
+      #};
+
+      #mini-align
 
       ### PREVIOUS
-      # lazy loading
-      # lz-n = {
-      #   enable = true;
-      # };
 
       # lsp = {
       #   enable = true;
@@ -257,11 +271,6 @@ in
       # lint.enable = true;
 
       # editor UI tools
-      # airline = {
-      #   enable = true;
-      #   settings.theme = "dark";
-      # };
-      # web-devicons.enable = true;
       # helpview.enable = true;
       # fzf-lua.enable = true;
 
@@ -429,7 +438,6 @@ in
   home.packages = [
     pkgs.tldr
 
-
   # # It is sometimes useful to fine-tune packages, for example, by applying
   # # overrides. You can do that directly here, just don't forget the
   # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -445,7 +453,7 @@ in
 
   # creat backup scripts here?
   # or just link em..?
-  ];
+];
 
   # manage environment variables here
   home.sessionVariables = {
