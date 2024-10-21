@@ -130,6 +130,7 @@ in
   # enable NIXVIM and configure
   programs.nixvim = {
     enable = true;
+
     opts = {
       smartcase = true;
 
@@ -139,24 +140,30 @@ in
 
       relativenumber = true;
       number = true;
-
-      filetype = true;
-      filetypeplugin = true;
-      filetypeindent = true;
-      autoindent = true;
-
-      foldmethod="indent";
-      foldlevel=0;
-
-      scrolloff=29;
-
-      syntax = true;
-
-      wildignore="*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx";
-      wildmode="list:longest";
-
-      showmode = true;
     };
+    extraConfigVim = ''
+      filetype on
+      filetype plugin on
+      filetype indent on
+      set autoindent
+
+      syntax on
+
+      set foldmethod=indent
+      set foldlevel=0
+
+      set scrolloff=29
+
+      set wildmenu
+      " Make wildmenu behave like similar to Bash completion.
+      set wildmode=list:longest
+
+      " There are certain files that we would never want to edit with Vim.
+      " Wildmenu will ignore files with these extensions.
+      set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+      set showmode
+    '';
 
     colorscheme = "default";
 
@@ -171,7 +178,10 @@ in
           notify = true;
         };
       };
-      #auto-dark
+      #auto-dark plugin needed
+
+      # editing tools
+      commentary.enable = true;
 
       ### TESTING
       mini = { 
@@ -199,9 +209,6 @@ in
           };
           icons = {};
           notify = {};
-
-	# me
-	commentary = {};
         };
       };
 
@@ -267,8 +274,6 @@ in
       #   };
       # };
 
-      # editing tools
-      # commentary.enable = true;
       # nvim-surround.enable = true;
       # endwise.enable = true;
       # trim.enable = true;
