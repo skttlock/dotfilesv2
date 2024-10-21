@@ -131,54 +131,47 @@ in
   programs.nixvim = {
     enable = true;
     opts = {
-      # smartcase = true;
+      smartcase = true;
 
-      # expandtab = true;
-      # shiftwidth = 4;
-      # tabstop = 4;
+      expandtab = true;
+      shiftwidth = 4;
+      tabstop = 4;
 
-      # relativenumber = true;
-      # number = true;
+      relativenumber = true;
+      number = true;
+
+      filetype = true;
+      filetypeplugin = true;
+      filetypeindent = true;
+      autoindent = true;
+
+      foldmethod="indent";
+      foldlevel=0;
+
+      scrolloff=29;
+
+      syntax = true;
+
+      wildignore="*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx";
+      wildmode="list:longest";
+
+      showmode = true;
     };
-    extraConfigVim = ''
-      "filetype on
-      "filetype plugin on
-      "filetype indent on
-      "set autoindent
 
-      "syntax on
+    colorscheme = "default";
 
-      "set foldmethod=indent
-      "set foldlevel=0
-
-      "set scrolloff=29
-
-      "set wildmenu
-      " Make wildmenu behave like similar to Bash completion.
-      "set wildmode=list:longest
-
-      " There are certain files that we would never want to edit with Vim.
-      " Wildmenu will ignore files with these extensions.
-      "set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-
-      "set showmode
-    '';
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    # colorschemes.base16 = {
-    #   enable = true;
-    #   colorscheme = "solarized-dark";
-    # };
-    # auto-dark
     plugins = {
       ### CURRENT
+      nix.enable = true;
+
+      # ui
       which-key = {
         enable = true;
         settings = {
           notify = true;
         };
       };
+      #auto-dark
 
       ### TESTING
       mini = { 
@@ -194,6 +187,21 @@ in
           files = {};
           jump2d = {};
           pick = {};
+          # "appearance"
+          animate = {};
+          hues = {
+              background = "#1c2617";
+              foreground = "#c3c8c2";
+              n_hues = 8;
+              plugins = {
+                default = true;
+              };
+          };
+          icons = {};
+          notify = {};
+
+	# me
+	commentary = {};
         };
       };
 
@@ -271,7 +279,6 @@ in
       # fugitive.enable = true;
 
       # other tools
-      nix.enable = true;
       # vimtex.enable = true;
 
 
