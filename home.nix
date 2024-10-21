@@ -187,16 +187,19 @@ in
       mini = { 
         enable = true;
         modules = {
+
           # "editing experience"
           ai = {};
           operators = {};
           pairs = {};
           surround = {};
+
           # "general workflow"
           bracketed = {};
           files = {};
           jump2d = {};
           pick = {};
+
           # "appearance"
           animate = {};
           hues = {
@@ -442,7 +445,7 @@ in
 
   # creat backup scripts here?
   # or just link em..?
-];
+  ];
 
   # manage environment variables here
   home.sessionVariables = {
