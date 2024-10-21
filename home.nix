@@ -171,8 +171,8 @@ in
 
     colorscheme = "default";
 
+    ### CURRENT
     plugins = {
-      ### CURRENT
       nix.enable = true;
 
       # mini.nvim, a collection of 40+ plugins
@@ -195,7 +195,7 @@ in
           pick = {};
 
           # "appearance"
-          animate = {};
+          animate = {};         # might remove
           hues = {
             background = "#1c2617";
             foreground = "#c3c8c2";
@@ -209,13 +209,30 @@ in
 
           #### TESTING
           statusline = {};
-          git = {};
-          diff = {};
+          tabline = {};
+          git = {
+
+          };
+          diff = {
+            view = {
+              style = "sign";
+            };
+          };
 
         };
       };
 
       # ui
+      gitblame = {
+        enable = true;
+        settings = {
+          delay = 50;
+          message_template = "<summary>";
+          set_extmark_options = {
+            virt_text_pos = "right_align";
+          };
+        };
+      };
       which-key = {
         enable = true;
         settings = {
@@ -233,7 +250,13 @@ in
       #  enable = true;
       #};
 
+      #lsp
+      # treesitter.enable = true;
+      #mini-complete
+
       #mini-align
+      #mini-sessions
+      #mini-clue? over whichkey?
 
       ### PREVIOUS
 
@@ -262,7 +285,6 @@ in
       # lspkind.enable = true;
       # trouble.enable = true;
 
-      # treesitter.enable = true;
 
       # snippets
       # luasnip.enable = true;
