@@ -53,6 +53,7 @@
     - [/] snippets
     - [ ] startup time
     - [ ] lazyload
+    - [ ] better lsp config (lazyload, etc.)
 - [ ] modularize??
 - [ ] configure less
 - [ ] stylix?

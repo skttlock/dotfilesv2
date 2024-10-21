@@ -180,17 +180,26 @@ in
       lsp = {
         enable = true;
         inlayHints = true;
+
         servers = {
           bashls.enable = true;     # bash
           nil_ls.enable = true;     # nix
           ccls.enable = true;       # c/c++
           zls.enable = true;        # zig
+          #metals.enable            # scala
           jdtls.enable = true;      # java... tbd
+          jdtls.extraOptions = [
+            "-cp ./lib/*.jar"
+          ];
+          # java-language-server.enable = true;
+
 
           html.enable = true;       # html
           cssls.enable = true;      # css
           denols.enable = true;     # js
           marksman.enable = true;   # markdown
+
+          # jsonls.enable = true;     # json
         };
       };
       lsp-lines.enable = true;
