@@ -131,123 +131,139 @@ in
   programs.nixvim = {
     enable = true;
     opts = {
-      smartcase = true;
+      # smartcase = true;
 
-      expandtab = true;
-      shiftwidth = 4;
-      tabstop = 4;
+      # expandtab = true;
+      # shiftwidth = 4;
+      # tabstop = 4;
 
-      relativenumber = true;
-      number = true;
+      # relativenumber = true;
+      # number = true;
     };
     extraConfigVim = ''
-      filetype on
-      filetype plugin on
-      filetype indent on
-      set autoindent
+      "filetype on
+      "filetype plugin on
+      "filetype indent on
+      "set autoindent
 
-      syntax on
+      "syntax on
 
-      set foldmethod=indent
-      set foldlevel=0
+      "set foldmethod=indent
+      "set foldlevel=0
 
-      set scrolloff=29
+      "set scrolloff=29
 
-      set wildmenu
+      "set wildmenu
       " Make wildmenu behave like similar to Bash completion.
-      set wildmode=list:longest
+      "set wildmode=list:longest
 
       " There are certain files that we would never want to edit with Vim.
       " Wildmenu will ignore files with these extensions.
-      set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+      "set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-      set showmode
+      "set showmode
     '';
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    colorschemes.base16 = {
-      enable = true;
-      colorscheme = "solarized-dark";
-    };
+    # colorschemes.base16 = {
+    #   enable = true;
+    #   colorscheme = "solarized-dark";
+    # };
     # auto-dark
     plugins = {
-
-      lz-n = { # lazy loading
-        enable = true;
-      };
-
-      lsp = {
-        enable = true;
-        inlayHints = true;
-
-        servers = {
-          bashls.enable = true;     # bash
-          nil_ls.enable = true;     # nix
-          ccls.enable = true;       # c/c++
-          zls.enable = true;        # zig
-          #metals.enable            # scala
-          jdtls.enable = true;      # java... tbd
-          jdtls.extraOptions = [
-            "-cp ./lib/*.jar"
-          ];
-          # java-language-server.enable = true;
-
-
-          html.enable = true;       # html
-          cssls.enable = true;      # css
-          denols.enable = true;     # js
-          marksman.enable = true;   # markdown
-
-          # jsonls.enable = true;     # json
-        };
-      };
-      lsp-lines.enable = true;
-      lsp-status.enable = true;
-      lspkind.enable = true;
-      treesitter.enable = true;
-      trouble.enable = true;
-
-      # cmp...
-      luasnip.enable = true;
-      # vim-snippets.enable = true;
-      # friendly-snippets.enable = true;
-      # lint.enable = true;
-
-      # editor tools
-      airline = {
-        enable = true;
-        settings.theme = "dark";
-      };
-      web-devicons.enable = true;
+      ### CURRENT
       which-key = {
         enable = true;
         settings = {
           notify = true;
         };
       };
-      # helpview.enable = true;
-      # fzf-lua.enable = true;
 
-      rainbow-delimiters.enable = true;
-      vim-css-color.enable = true;
-      illuminate.enable = true;
-
-      render-markdown.enable = true;
-      gitsigns = {
+      ### TESTING
+      mini = { 
         enable = true;
-        settings = {
-          current_line_blame = true;
-          current_line_blame_opts.delay = 10;
-          current_line_blame_opts.virt_text_pos = "right_align";
+        modules = {
+          # "editing experience"
+          ai = {};
+          operators = {};
+          pairs = {};
+          surround = {};
+          # "general workflow"
+          bracketed = {};
+          files = {};
+          jump2d = {};
+          pick = {};
         };
       };
 
+
+
+      ### PREVIOUS
+      # lazy loading
+      # lz-n = {
+      #   enable = true;
+      # };
+
+      # lsp = {
+      #   enable = true;
+      #   inlayHints = true;
+
+      #   servers = {
+      #     bashls.enable = true;     # bash
+      #     nil_ls.enable = true;     # nix
+      #     ccls.enable = true;       # c/c++
+      #     zls.enable = true;        # zig
+      #     metals.enable             # scala
+      #     jdtls.enable = true;      # java... tbd
+
+      #     html.enable = true;       # html
+      #     cssls.enable = true;      # css
+      #     denols.enable = true;     # js
+      #     marksman.enable = true;   # markdown
+
+      #     jsonls.enable = true;     # json
+      #   };
+      # };
+      # lsp-lines.enable = true;
+      # lsp-status.enable = true;
+      # lspkind.enable = true;
+      # trouble.enable = true;
+
+      # treesitter.enable = true;
+
+      # snippets
+      # luasnip.enable = true;
+      # vim-snippets.enable = true;
+      # friendly-snippets.enable = true;
+      # lint.enable = true;
+
+      # editor UI tools
+      # airline = {
+      #   enable = true;
+      #   settings.theme = "dark";
+      # };
+      # web-devicons.enable = true;
+      # helpview.enable = true;
+      # fzf-lua.enable = true;
+
+      # vim-css-color.enable = true;
+
+      # render-markdown.enable = true;
+      # gitsigns = {
+      #   enable = true;
+      #   settings = {
+      #     current_line_blame = true;
+      #     current_line_blame_opts.delay = 10;
+      #     current_line_blame_opts.virt_text_pos = "right_align";
+      #   };
+      # };
+
       # editing tools
-      commentary.enable = true;
-      nvim-surround.enable = true;
-      endwise.enable = true;
-      trim.enable = true;
+      # commentary.enable = true;
+      # nvim-surround.enable = true;
+      # endwise.enable = true;
+      # trim.enable = true;
 
       # emmet.enable = true;
       # dap.enable = true;
