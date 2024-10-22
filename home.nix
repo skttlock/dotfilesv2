@@ -207,18 +207,17 @@ in
           icons = {};
           notify = {};
 
-          #### TESTING
           statusline = {};
           tabline = {};
-          git = {
-
-          };
+          git = {};
           diff = {
             view = {
               style = "sign";
             };
           };
 
+          #### TESTING
+          completion = {};
         };
       };
 
@@ -242,6 +241,29 @@ in
 
       ### TESTING
 
+      # lsp
+      treesitter.enable = true;
+      lsp.enable = true;
+      lsp.inlayHints = true;
+      lsp-lines.enable = true;
+      lsp-status.enable = true;
+      lsp.servers = {
+        nil_ls.enable = true;     # nix
+        bashls.enable = true;     # bash
+
+        ccls.enable = true;       # c/c++
+        zls.enable = true;        # zig
+        metals.enable = true;     # scala
+        jdtls.enable = true;      # java... tbd
+
+        html.enable = true;       # html
+        cssls.enable = true;      # css
+        denols.enable = true;     # js
+        marksman.enable = true;   # markdown
+
+        jsonls.enable = true;     # json
+      };
+      # trouble.enable = true;
 
       ### TO BE ADDED
 
@@ -250,40 +272,11 @@ in
       #  enable = true;
       #};
 
-      #lsp
-      # treesitter.enable = true;
-      #mini-complete
-
       #mini-align
       #mini-sessions
       #mini-clue? over whichkey?
 
       ### PREVIOUS
-
-      # lsp = {
-      #   enable = true;
-      #   inlayHints = true;
-
-      #   servers = {
-      #     bashls.enable = true;     # bash
-      #     nil_ls.enable = true;     # nix
-      #     ccls.enable = true;       # c/c++
-      #     zls.enable = true;        # zig
-      #     metals.enable             # scala
-      #     jdtls.enable = true;      # java... tbd
-
-      #     html.enable = true;       # html
-      #     cssls.enable = true;      # css
-      #     denols.enable = true;     # js
-      #     marksman.enable = true;   # markdown
-
-      #     jsonls.enable = true;     # json
-      #   };
-      # };
-      # lsp-lines.enable = true;
-      # lsp-status.enable = true;
-      # lspkind.enable = true;
-      # trouble.enable = true;
 
       # snippets
       # luasnip.enable = true;
