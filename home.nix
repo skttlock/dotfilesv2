@@ -285,7 +285,6 @@ in
       # lspkind.enable = true;
       # trouble.enable = true;
 
-
       # snippets
       # luasnip.enable = true;
       # vim-snippets.enable = true;
@@ -299,18 +298,6 @@ in
       # vim-css-color.enable = true;
 
       # render-markdown.enable = true;
-      # gitsigns = {
-      #   enable = true;
-      #   settings = {
-      #     current_line_blame = true;
-      #     current_line_blame_opts.delay = 10;
-      #     current_line_blame_opts.virt_text_pos = "right_align";
-      #   };
-      # };
-
-      # nvim-surround.enable = true;
-      # endwise.enable = true;
-      # trim.enable = true;
 
       # emmet.enable = true;
       # dap.enable = true;
