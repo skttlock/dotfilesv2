@@ -150,6 +150,7 @@ in
       filetype plugin on
       filetype indent on
       set autoindent
+      set spell spelllang=en_us
 
       syntax on
 
