@@ -170,7 +170,7 @@ in
       set showmode
     '';
 
-    colorscheme = "default";
+    colorscheme = "minischeme";
 
     ### CURRENT
     plugins = {
@@ -261,6 +261,8 @@ in
         cssls.enable = true;      # css
         denols.enable = true;     # js
         marksman.enable = true;   # markdown
+
+        vale_ls.enable = true;    # technical writing
 
         jsonls.enable = true;     # json
       };
