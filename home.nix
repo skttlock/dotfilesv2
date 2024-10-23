@@ -149,6 +149,7 @@ in
       filetype on
       filetype plugin on
       filetype indent on
+
       set autoindent
       set spell spelllang=en_us
 
@@ -197,14 +198,14 @@ in
 
           # "appearance"
           animate = {};         # might remove
-          hues = {
-            background = "#1c2617";
-            foreground = "#c3c8c2";
-            n_hues = 8;
-            plugins = {
-              default = true;
-            };
-          };
+          # hues = {
+          #   background = "#1c2617";
+          #   foreground = "#c3c8c2";
+          #   n_hues = 8;
+          #   plugins = {
+          #     default = true;
+          #   };
+          # };
           icons = {};
           notify = {};
 
@@ -256,6 +257,8 @@ in
         zls.enable = true;        # zig
         metals.enable = true;     # scala
         jdtls.enable = true;      # java... tbd
+        # jdtls = { 
+        #};
 
         html.enable = true;       # html
         cssls.enable = true;      # css
