@@ -50,11 +50,18 @@
 - [ ] sops-nix
     - ssh keys
 - [/] nixvim plugins
-    - [/] snippets
-    - [ ] startup time
+    - [ ] snippets
+    - [/] startup time
     - [ ] lazyload
-    - [ ] better lsp config (lazyload, etc.)
+    - [/] better lsp config (lazyload, etc.)
+        - [ ] jdtls needs keybind or delay
+    - [x] mini nvim
+        - [ ] mini.darmo idea
+    - [ ] 
+
 - [ ] modularize??
+    - [ ] learn how
+    - [ ] /modules/nixvim.nix
 - [ ] configure less
 - [ ] stylix?
     - note:
