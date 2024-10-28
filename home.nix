@@ -60,17 +60,33 @@ in
     };
 
     shellAliases = {
+      # meta
       hms = "home-manager switch";
       hme = "home-manager edit";
-
-      ls = "lsd";
+      # cd
+      
+      # lsd
+      ls = "lsd --depth=1";
       lsa = "lsd --all";
-      lst = "lsd --tree --depth=3";
-      lstr = "lsd --tree --depth=5";
-      lstre = "lsd --tree --depth=5";
-      lstree = "lsd --tree --depth=4";
-
+      lst = "lsd --tree --depth=1 --all";
+      lstr = "lsd --tree --depth=2 --all";
+      lstre = "lsd --tree --depth=3 --all";
+      lstree = "lsd --tree --depth=4 --all";
+      # nix
       ns = "nix-shell";
+      # git
+      # gd = "git diff";
+      # ga = "git add";
+      # gc = "git commit";
+      # gcm = "git commit --message";
+      # gca = "git commit --amend";
+      # gl  = "git log";
+      # glo = "git log --oneline";
+      # scripts
+      # c = "./compile.sh";     # compiles project
+      # r = "./run.sh";         # runs project
+      # d = "./document.sh";    # generates documentation
+      # v = "./view.sh"         # views documentation and/or project (i.e web page)
     };
     profileExtra = ''
       # .bash_profile
@@ -150,6 +166,8 @@ in
       filetype plugin on
       filetype indent on
 
+      set mouse=
+
       set autoindent
       set spell spelllang=en_us
 
@@ -193,7 +211,11 @@ in
           # "general workflow"
           bracketed = {};
           files = {};
-          jump2d = {};
+          jump2d = {
+            view = {
+              n_steps_ahead = 2;
+            };
+          };
           pick = {};
 
           # "appearance"
@@ -247,7 +269,6 @@ in
       treesitter.enable = true;
       lsp.enable = true;
       lsp.inlayHints = true;
-      lsp-lines.enable = true;
       lsp-status.enable = true;
       lsp.servers = {
         nil_ls.enable = true;     # nix
@@ -353,6 +374,9 @@ in
   programs.lsd = {
     enable = true;
     enableAliases = false;
+    settings = {
+      layout = "tree";
+    };
   };
 
   # enable GH
@@ -459,7 +483,7 @@ in
   #   echo "Hello, ${config.home.username}!"
   # '')
 
-  # creat backup scripts here?
+  # create backup scripts here?
   # or just link em..?
 ];
 
