@@ -35,8 +35,8 @@ in
     enable = true;
     config = {
       modifier = "Mod4";
-      # Use wezterm as default terminal
-      terminal = "wezterm";
+      # set default terminal
+      # terminal = "";
       startup = [
         # Launch Firefox on start
         # {command = "firefox";}
@@ -129,6 +129,7 @@ in
       unset rc
 
       eval "$(starship init bash)"
+      eval "$(zoxide init bash)"
     '';
   };
 
@@ -189,7 +190,7 @@ in
       set showmode
     '';
 
-    colorscheme = "minischeme";
+    colorscheme = "default";
 
     ### CURRENT
     plugins = {
@@ -207,6 +208,8 @@ in
           surround = {};
 
           comment = {};
+
+          completion = {};
 
           # "general workflow"
           bracketed = {};
@@ -232,7 +235,10 @@ in
           notify = {};
 
           statusline = {};
-          tabline = {};
+          tabline = {
+            # format buffer line:
+            # buffernum symbol filename.fiiletype
+          };
           git = {};
           diff = {
             view = {
@@ -241,7 +247,6 @@ in
           };
 
           #### TESTING
-          completion = {};
         };
       };
 
@@ -365,6 +370,11 @@ in
         defaultBranch = "main";
       };
     };
+  };
+
+  # enable ZOXIDE and configure
+  programs.zoxide = {
+    enable = true;
   };
 
   #enable fastfetch
