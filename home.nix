@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ confi, pkgs, ... }:
 
 let
   homeDir = builtins.getEnv "HOME";
   existingNixPath = builtins.getEnv "NIX_PATH";
   nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
+  stylix.url = "github:danth/stylix";
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
@@ -19,35 +20,13 @@ in
   # manage.
   home.username = "joshuaforeman";
   home.homeDirectory = "/home/joshuaforeman";
-  home.stateVersion = "24.05"; # josh u are not smart enough to change this
+  home.stateVersion = "24.05"; # josh u are not mart enough to change this
 
+  ### PROGRAMS ###
   # enable and configure programs below...
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # testing sway
-  # programs.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true;
-  # };
-  wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      modifier = "Mod4";
-      # set default terminal
-      # terminal = "";
-      startup = [
-        # Launch Firefox on start
-        # {command = "firefox";}
-        # Launch Obsidian on start
-        # {command = "obsidian";}
-        # Launch a terminal on start
-        # {command = ;}
-      ];
-    };
-  };
-
 
 
   # 'enable' BASH and configure
@@ -73,6 +52,7 @@ in
       lstre = "lsd --tree --depth=3 --all";
       lstree = "lsd --tree --depth=4 --all";
       # nix
+      # nix-command = "nix --extra-experimental-features nix-command";
       ns = "nix-shell";
       # git
       # gd = "git diff";
@@ -205,7 +185,9 @@ in
           ai = {};
           operators = {};
           pairs = {};
-          surround = {};
+          surround = {
+            respect_selection_type = true;
+          };
 
           comment = {};
 
@@ -410,6 +392,37 @@ in
     enable = true;
   };
 
+
+  # TESTING #
+  # stylix = {
+  #   enable = true; 
+  #   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+  # };
+
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
+  # wayland.windowManager.sway = {
+  #   enable = true;
+  #   config = {
+  #     modifier = "Mod4";
+  #     # set default terminal
+  #     # terminal = "";
+  #     startup = [
+  #       # Launch Firefox on start
+  #       # {command = "firefox";}
+  #       # Launch Obsidian on start
+  #       # {command = "obsidian";}
+  #       # Launch a terminal on start
+  #       # {command = ;}
+  #     ];
+  #   };
+  # };
+
+
+
+  # LATER #
   # enable BORGMATIC and configure
   # programs.borgmatic = {
   #   enable = true;
@@ -459,16 +472,16 @@ in
 
 
 
-
+  ### DOTFILES ###
   # manage dotfiles here
   home.file = {
-    # "../etc/nixos/configuration.nix = dotfiles/configuration.nix;
+    # "../etc/nixos/configuration.nix".source = dotfiles/configuration.nix;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    #".bashrc".source = dotfiles/bashrc;
+    # ".bashrc".source = dotfiles/.bashrc;
     # ".vimrc".source = dotfiles/.vimrc;
 
     # # You can also set the file content immediately.
@@ -476,6 +489,7 @@ in
     # '';
   };
 
+  ### NIXPKGS ###
   # not preferred: install nixpkgs here to your environment
   home.packages = [
     pkgs.tldr
@@ -497,6 +511,7 @@ in
   # or just link em..?
 ];
 
+  ### ENV VARIABLES ###
   # manage environment variables here
   home.sessionVariables = {
   };
