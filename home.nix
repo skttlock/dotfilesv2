@@ -45,18 +45,20 @@ in
       # cd
       
       # lsd
-      ls = "lsd --depth=1";
+      ls = "lsd";
       lsa = "lsd --all";
-      lst = "lsd --tree --depth=1 --all";
-      lstr = "lsd --tree --depth=2 --all";
-      lstre = "lsd --tree --depth=3 --all";
-      lstree = "lsd --tree --depth=4 --all";
+      lst = "lsd --tree --depth=1";
+      lstr = "lsd --tree --depth=2";
+      lstre = "lsd --tree --depth=3";
+      lstree = "lsd --tree --depth=4";
       # nix
       # nix-command = "nix --extra-experimental-features nix-command";
       ns = "nix-shell";
       # git
       # gd = "git diff";
       # ga = "git add";
+      # git patch = "git add --patch";
+      # gp = "git patch";
       # gc = "git commit";
       # gcm = "git commit --message";
       # gca = "git commit --amend";
@@ -367,7 +369,6 @@ in
     enable = true;
     enableAliases = false;
     settings = {
-      layout = "tree";
     };
   };
 
