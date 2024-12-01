@@ -1,10 +1,10 @@
-{ confi, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   homeDir = builtins.getEnv "HOME";
   existingNixPath = builtins.getEnv "NIX_PATH";
   nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
-  stylix.url = "github:danth/stylix";
+  # stylix.url = "github:danth/stylix";
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
@@ -22,18 +22,21 @@ in
   home.homeDirectory = "/home/joshuaforeman";
   home.stateVersion = "24.05"; # josh u are not mart enough to change this
 
+  # Allow unfree software
+
+  # Enable font configuration
+  fonts.fontconfig.enable = true;
+
   ### PROGRAMS ###
   # enable and configure programs below...
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
   # 'enable' BASH and configure
   programs.bash = {
     enable = true;
     sessionVariables = {
-      NIX_PATH = if existingNixPath != "" then "${nixPath}:${existingNixPath}" else nixPath;
       EDITOR = "vim";
       VISUAL = "vim";
     };
@@ -43,7 +46,7 @@ in
       hms = "home-manager switch";
       hme = "home-manager edit";
       # cd
-      
+
       # lsd
       ls = "lsd";
       lsa = "lsd --all";
@@ -65,10 +68,11 @@ in
       # gl  = "git log";
       # glo = "git log --oneline";
       # scripts
-      # c = "./compile.sh";     # compiles project
-      # r = "./run.sh";         # runs project
-      # d = "./document.sh";    # generates documentation
-      # v = "./view.sh"         # views documentation and/or project (i.e web page)
+      # c = "./compile.sh";         # compiles project
+      # r = "./run.sh";             # runs project
+      # cr = "./compile.sh; ./run.sh";
+      # d = "./document.sh";        # generates documentation
+      # v = "./view.sh"             # views documentation and/or project (i.e web page)
     };
     profileExtra = ''
       # .bash_profile
@@ -145,16 +149,13 @@ in
       number = true;
     };
     extraConfigVim = ''
-      filetype on
-      filetype plugin on
-      filetype indent on
+      filetype plugin indent on
+      syntax on
 
       set mouse=
 
       set autoindent
       set spell spelllang=en_us
-
-      syntax on
 
       set foldmethod=indent
       set foldlevel=0
@@ -170,13 +171,41 @@ in
       set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
       set showmode
+
+      " show hidden characters
+      set list
+      set listchars=tab:>>,trail:-,nbsp:+,eol:^
+
+      " this command clears the last used search pattern:
+      " :let @/ = ""
+
+      " augroup vimrc
+      "   au BufReadPre * setlocal foldmethod=indent
+      "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+      " augroup END
     '';
 
     colorscheme = "default";
+    wrapRc = false;
 
     ### CURRENT
     plugins = {
       nix.enable = true;
+
+      neorg = { 
+        enable = true;
+        modules = {
+          "core.defaults" = {};
+          "core.dirman" = {
+            config = {
+              workspaces = {
+                home = "~/Documents/notes/home";
+                work = "~/Documents/notes/work";
+              };
+            };
+          };
+        };
+      };
 
       # mini.nvim, a collection of 40+ plugins
       mini = { 
@@ -206,7 +235,7 @@ in
           pick = {};
 
           # "appearance"
-          animate = {};         # might remove
+          # animate = {};         # might remove
           # hues = {
           #   background = "#1c2617";
           #   foreground = "#c3c8c2";
@@ -268,6 +297,7 @@ in
         metals.enable = true;     # scala
         jdtls.enable = true;      # java... tbd
         # jdtls = { 
+          # delay = 150;
         #};
 
         html.enable = true;       # html
@@ -275,13 +305,15 @@ in
         denols.enable = true;     # js
         marksman.enable = true;   # markdown
 
-        vale_ls.enable = true;    # technical writing
+        # vale_ls.enable = true;    # technical writing
 
         jsonls.enable = true;     # json
       };
       # trouble.enable = true;
 
       ### TO BE ADDED
+
+      # telescope.enable = true;
 
       # lazy loading
       #lz-n = {
@@ -318,16 +350,13 @@ in
 
 
     # maybe later
-    # project-nvim.enable = true;
-      # telescope.enable = true;
-      # neorg.enable = true;
+      # project-nvim.enable = true;
       # ollama.enable = true;
       # typst-vim.enable = true;
       # sniprun.enable = true;
       # rest.enable = true;
       # refactoring.enable = true;
       # otter.enable = true;
-      # mini.enable = true;
       # guess-indent.enable = true;
     };
   };
@@ -369,11 +398,12 @@ in
     enable = true;
     enableAliases = false;
     settings = {
+      sorting.column = "extension";
     };
   };
 
   # enable GH
-  #programs.gh.enable = true;
+  programs.gh.enable = true;
   # enable FZF
   programs.fzf = {
     enable = true;
@@ -397,7 +427,13 @@ in
   # TESTING #
   # stylix = {
   #   enable = true; 
-  #   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+  #   fonts.monopace = {
+  #     name = "Cousine Nerd Font";
+  #     # package = <derivation nerdfonts>
+  #   };
+  #
+  #   image = "./wallpapers/moon-lit.jpg";
   # };
 
   # programs.sway = {
@@ -495,18 +531,20 @@ in
   home.packages = [
     pkgs.tldr
 
+    # pkgs.discord??
+
   # # It is sometimes useful to fine-tune packages, for example, by applying
   # # overrides. You can do that directly here, just don't forget the
   # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
   # # fonts?
-  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
 
   # # You can also create simple shell scripts directly inside your
   # # configuration. For example, this adds a command 'my-hello' to your
   # # environment:
-  # (pkgs.writeShellScriptBin "my-hello" ''
-  #   echo "Hello, ${config.home.username}!"
-  # '')
+  (pkgs.writeShellScriptBin "my-hello" ''
+    echo "Hello, ${config.home.username}!"
+  '')
 
   # create backup scripts here?
   # or just link em..?
