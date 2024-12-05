@@ -174,7 +174,7 @@ in
 
       " show hidden characters
       set list
-      set listchars=tab:>>,trail:-,nbsp:+,eol:^
+      set listchars=tab:>>,trail:-,nbsp:+
 
       " this command clears the last used search pattern:
       " :let @/ = ""
@@ -311,6 +311,8 @@ in
       };
       # trouble.enable = true;
 
+      lint.enable = true;
+
       ### TO BE ADDED
 
       # telescope.enable = true;
@@ -330,7 +332,6 @@ in
       # luasnip.enable = true;
       # vim-snippets.enable = true;
       # friendly-snippets.enable = true;
-      # lint.enable = true;
 
       # editor UI tools
       # helpview.enable = true;
