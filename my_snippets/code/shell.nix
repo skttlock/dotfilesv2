@@ -2,6 +2,12 @@ let
   # pin version to 24.05
   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-24.05";
   pkgs = import nixpkgs { config = {}; overlays = []; };
+  aliases = [
+    "alias dr='deno run'"
+  ];
+  # scripts = [
+  #   "./scripts/"
+  # ];
 in
 
   pkgs.mkShellNoCC {
@@ -26,6 +32,16 @@ in
       echo "Using these packages:";
 
       deno --version
+
+      echo "";
+      echo " ==  ==  ==  ==  ==  == "
+      echo "";
+
+      echo "With these aliases:";
+      for alias in ${toString aliases}; do
+        eval $alias
+        echo $alias
+      done
 
 
       echo "------------------------";
