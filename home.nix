@@ -400,7 +400,6 @@ in
     enableAliases = false;
     settings = {
       sorting.column = "extension";
-      header = true;
     };
   };
 
