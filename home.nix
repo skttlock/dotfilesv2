@@ -4,6 +4,7 @@ let
   homeDir = builtins.getEnv "HOME";
   existingNixPath = builtins.getEnv "NIX_PATH";
   nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
+  # stylix.url = "github:danth/stylix";
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
@@ -19,58 +20,59 @@ in
   # manage.
   home.username = "joshuaforeman";
   home.homeDirectory = "/home/joshuaforeman";
-  home.stateVersion = "24.05"; # josh u are not smart enough to change this
+  home.stateVersion = "24.05"; # josh u are not mart enough to change this
 
+  # Allow unfree software
+
+  # Enable font configuration
+  fonts.fontconfig.enable = true;
+
+  ### PROGRAMS ###
   # enable and configure programs below...
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # testing sway
-  # programs.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true;
-  # };
-  wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      modifier = "Mod4";
-      # Use wezterm as default terminal
-      terminal = "wezterm";
-      startup = [
-        # Launch Firefox on start
-        # {command = "firefox";}
-        # Launch Obsidian on start
-        # {command = "obsidian";}
-        # Launch a terminal on start
-        # {command = ;}
-      ];
-    };
-  };
-
-
-
   # 'enable' BASH and configure
   programs.bash = {
     enable = true;
     sessionVariables = {
-      NIX_PATH = if existingNixPath != "" then "${nixPath}:${existingNixPath}" else nixPath;
       EDITOR = "vim";
       VISUAL = "vim";
     };
 
     shellAliases = {
+      # meta
       hms = "home-manager switch";
       hme = "home-manager edit";
+      # cd
 
+      # lsd
       ls = "lsd";
       lsa = "lsd --all";
-      lst = "lsd --tree --depth=3";
-      lstr = "lsd --tree --depth=5";
-      lstre = "lsd --tree --depth=5";
+      lst = "lsd --tree --depth=1";
+      lstr = "lsd --tree --depth=2";
+      lstre = "lsd --tree --depth=3";
       lstree = "lsd --tree --depth=4";
-
+      # nix
+      # nix-command = "nix --extra-experimental-features nix-command";
       ns = "nix-shell";
+      # git
+      # gd = "git diff";
+      # ga = "git add";
+      # git patch = "git add --patch";
+      # gp = "git patch";
+      # gc = "git commit";
+      # gcm = "git commit --message";
+      # gca = "git commit --amend";
+      # gl  = "git log";
+      # glo = "git log --oneline";
+      # scripts
+      # c = "./compile.sh";         # compiles project
+      # r = "./run.sh";             # runs project
+      # cr = "./compile.sh; ./run.sh";
+      # d = "./document.sh";        # generates documentation
+      # v = "./view.sh"             # views documentation and/or project (i.e web page)
     };
     profileExtra = ''
       # .bash_profile
@@ -113,6 +115,7 @@ in
       unset rc
 
       eval "$(starship init bash)"
+      eval "$(zoxide init bash)"
     '';
   };
 
@@ -130,6 +133,11 @@ in
   # enable NIXVIM and configure
   programs.nixvim = {
     enable = true;
+
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
     opts = {
       smartcase = true;
 
@@ -141,12 +149,13 @@ in
       number = true;
     };
     extraConfigVim = ''
-      filetype on
-      filetype plugin on
-      filetype indent on
-      set autoindent
-
+      filetype plugin indent on
       syntax on
+
+      set mouse=
+
+      set autoindent
+      set spell spelllang=en_us
 
       set foldmethod=indent
       set foldlevel=0
@@ -162,92 +171,175 @@ in
       set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
       set showmode
+
+      " show hidden characters
+      set list
+      set listchars=tab:>>,trail:-,nbsp:+
+
+      " this command clears the last used search pattern:
+      " :let @/ = ""
+
+      " augroup vimrc
+      "   au BufReadPre * setlocal foldmethod=indent
+      "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+      " augroup END
     '';
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    colorschemes.base16 = {
-      enable = true;
-      colorscheme = "solarized-dark";
-    };
-    # auto-dark
+
+    colorscheme = "default";
+    wrapRc = false;
+
+    ### CURRENT
     plugins = {
+      nix.enable = true;
 
-      lz-n = { # lazy loading
+      neorg = { 
         enable = true;
-      };
-
-      lsp = {
-        enable = true;
-        inlayHints = true;
-
-        servers = {
-          bashls.enable = true;     # bash
-          nil_ls.enable = true;     # nix
-          ccls.enable = true;       # c/c++
-          zls.enable = true;        # zig
-          #metals.enable            # scala
-          jdtls.enable = true;      # java... tbd
-          jdtls.extraOptions = [
-            "-cp ./lib/*.jar"
-          ];
-          # java-language-server.enable = true;
-
-
-          html.enable = true;       # html
-          cssls.enable = true;      # css
-          denols.enable = true;     # js
-          marksman.enable = true;   # markdown
-
-          # jsonls.enable = true;     # json
+        modules = {
+          "core.defaults" = {};
+          "core.dirman" = {
+            config = {
+              workspaces = {
+                home = "~/Documents/notes/home";
+                work = "~/Documents/notes/work";
+              };
+            };
+          };
         };
       };
-      lsp-lines.enable = true;
-      lsp-status.enable = true;
-      lspkind.enable = true;
-      treesitter.enable = true;
-      trouble.enable = true;
 
-      # cmp...
-      luasnip.enable = true;
-      # vim-snippets.enable = true;
-      # friendly-snippets.enable = true;
-      # lint.enable = true;
-
-      # editor tools
-      airline = {
+      # mini.nvim, a collection of 40+ plugins
+      mini = { 
         enable = true;
-        settings.theme = "dark";
+        modules = {
+
+          # "editing experience"
+          ai = {};
+          operators = {};
+          pairs = {};
+          surround = {
+            respect_selection_type = true;
+          };
+
+          comment = {};
+
+          completion = {};
+
+          # "general workflow"
+          bracketed = {};
+          files = {};
+          jump2d = {
+            view = {
+              n_steps_ahead = 2;
+            };
+          };
+          pick = {};
+
+          # "appearance"
+          # animate = {};         # might remove
+          # hues = {
+          #   background = "#1c2617";
+          #   foreground = "#c3c8c2";
+          #   n_hues = 8;
+          #   plugins = {
+          #     default = true;
+          #   };
+          # };
+          icons = {};
+          notify = {};
+
+          statusline = {};
+          tabline = {
+            # format buffer line:
+            # buffernum symbol filename.fiiletype
+          };
+          git = {};
+          diff = {
+            view = {
+              style = "sign";
+            };
+          };
+
+          #### TESTING
+        };
       };
-      web-devicons.enable = true;
+
+      # ui
+      gitblame = {
+        enable = true;
+        settings = {
+          delay = 50;
+          message_template = "<summary>";
+          set_extmark_options = {
+            virt_text_pos = "right_align";
+          };
+        };
+      };
       which-key = {
         enable = true;
         settings = {
           notify = true;
         };
       };
+
+      ### TESTING
+
+      # lsp
+      treesitter.enable = true;
+      lsp.enable = true;
+      lsp.inlayHints = true;
+      lsp-status.enable = true;
+      lsp.servers = {
+        nil_ls.enable = true;     # nix
+        bashls.enable = true;     # bash
+
+        ccls.enable = true;       # c/c++
+        zls.enable = true;        # zig
+        metals.enable = true;     # scala
+        jdtls.enable = true;      # java... tbd
+        # jdtls = { 
+          # delay = 150;
+        #};
+
+        html.enable = true;       # html
+        cssls.enable = true;      # css
+        denols.enable = true;     # js
+        marksman.enable = true;   # markdown
+
+        # vale_ls.enable = true;    # technical writing
+
+        jsonls.enable = true;     # json
+      };
+      # trouble.enable = true;
+
+      lint.enable = true;
+
+      ### TO BE ADDED
+
+      # telescope.enable = true;
+
+      # lazy loading
+      #lz-n = {
+      #  enable = true;
+      #};
+
+      #mini-align
+      #mini-sessions
+      #mini-clue? over whichkey?
+
+      ### PREVIOUS
+
+      # snippets
+      # luasnip.enable = true;
+      # vim-snippets.enable = true;
+      # friendly-snippets.enable = true;
+
+      # editor UI tools
       # helpview.enable = true;
       # fzf-lua.enable = true;
 
-      rainbow-delimiters.enable = true;
-      vim-css-color.enable = true;
-      illuminate.enable = true;
+      # vim-css-color.enable = true;
 
-      render-markdown.enable = true;
-      gitsigns = {
-        enable = true;
-        settings = {
-          current_line_blame = true;
-          current_line_blame_opts.delay = 10;
-          current_line_blame_opts.virt_text_pos = "right_align";
-        };
-      };
-
-      # editing tools
-      commentary.enable = true;
-      nvim-surround.enable = true;
-      endwise.enable = true;
-      trim.enable = true;
+      # render-markdown.enable = true;
 
       # emmet.enable = true;
       # dap.enable = true;
@@ -255,21 +347,17 @@ in
       # fugitive.enable = true;
 
       # other tools
-      nix.enable = true;
       # vimtex.enable = true;
 
 
     # maybe later
-    # project-nvim.enable = true;
-      # telescope.enable = true;
-      # neorg.enable = true;
+      # project-nvim.enable = true;
       # ollama.enable = true;
       # typst-vim.enable = true;
       # sniprun.enable = true;
       # rest.enable = true;
       # refactoring.enable = true;
       # otter.enable = true;
-      # mini.enable = true;
       # guess-indent.enable = true;
     };
   };
@@ -298,6 +386,11 @@ in
     };
   };
 
+  # enable ZOXIDE and configure
+  programs.zoxide = {
+    enable = true;
+  };
+
   #enable fastfetch
   programs.fastfetch.enable = true;
 
@@ -305,10 +398,14 @@ in
   programs.lsd = {
     enable = true;
     enableAliases = false;
+    settings = {
+      sorting.column = "extension";
+      header = true;
+    };
   };
 
   # enable GH
-  #programs.gh.enable = true;
+  programs.gh.enable = true;
   # enable FZF
   programs.fzf = {
     enable = true;
@@ -328,6 +425,43 @@ in
     enable = true;
   };
 
+
+  # TESTING #
+  # stylix = {
+  #   enable = true; 
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+  #   fonts.monopace = {
+  #     name = "Cousine Nerd Font";
+  #     # package = <derivation nerdfonts>
+  #   };
+  #
+  #   image = "./wallpapers/moon-lit.jpg";
+  # };
+
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
+  # wayland.windowManager.sway = {
+  #   enable = true;
+  #   config = {
+  #     modifier = "Mod4";
+  #     # set default terminal
+  #     # terminal = "";
+  #     startup = [
+  #       # Launch Firefox on start
+  #       # {command = "firefox";}
+  #       # Launch Obsidian on start
+  #       # {command = "obsidian";}
+  #       # Launch a terminal on start
+  #       # {command = ;}
+  #     ];
+  #   };
+  # };
+
+
+
+  # LATER #
   # enable BORGMATIC and configure
   # programs.borgmatic = {
   #   enable = true;
@@ -377,16 +511,16 @@ in
 
 
 
-
+  ### DOTFILES ###
   # manage dotfiles here
   home.file = {
-    # "../etc/nixos/configuration.nix = dotfiles/configuration.nix;
+    # "../etc/nixos/configuration.nix".source = dotfiles/configuration.nix;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    #".bashrc".source = dotfiles/bashrc;
+    # ".bashrc".source = dotfiles/.bashrc;
     # ".vimrc".source = dotfiles/.vimrc;
 
     # # You can also set the file content immediately.
@@ -394,28 +528,29 @@ in
     # '';
   };
 
+  ### NIXPKGS ###
   # not preferred: install nixpkgs here to your environment
-  home.packages = [
-    pkgs.tldr
+  home.packages = with pkgs; [
+  # tui
+    tldr
 
+  # gui
+    # discord
+  # games
+    # prismlauncher
 
-  # # It is sometimes useful to fine-tune packages, for example, by applying
-  # # overrides. You can do that directly here, just don't forget the
-  # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-  # # fonts?
-  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  # system font
+    (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
 
-  # # You can also create simple shell scripts directly inside your
-  # # configuration. For example, this adds a command 'my-hello' to your
-  # # environment:
-  # (pkgs.writeShellScriptBin "my-hello" ''
-  #   echo "Hello, ${config.home.username}!"
-  # '')
+    # You can also create simple shell scripts directly inside your
+    # configuration. For example, this adds a command 'my-hello' to your
+    # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  ];
 
-  # creat backup scripts here?
-  # or just link em..?
-];
-
+  ### ENV VARIABLES ###
   # manage environment variables here
   home.sessionVariables = {
   };

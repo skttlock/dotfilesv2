@@ -4,6 +4,18 @@
 *note* to surpress warning stating that `xyz/per-user/root/channels` does not exist, make said directories.
 
 ## To-Do
+
+### DOTFILES
+-
+
+### NIX
+
+#### SHELLS
+
+- typed lua
+
+#### HOME-MANAGER
+
 - [ ] `./configuration.nix`
     - [ ] generate via nix command
     - [ ] symlink via home-manager
@@ -50,12 +62,20 @@
 - [ ] sops-nix
     - ssh keys
 - [/] nixvim plugins
-    - [/] snippets
-    - [ ] startup time
+    - [ ] snippets
+    - [/] startup time
     - [ ] lazyload
-    - [ ] better lsp config (lazyload, etc.)
+    - [/] better lsp config (lazyload, etc.)
+        - [ ] jdtls needs keybind or delay
+    - [x] mini nvim
+        - [ ] mini.darmo idea
+    - [ ] 
+
 - [ ] modularize??
+    - [ ] learn how
+    - [ ] /modules/nixvim.nix
 - [ ] configure less
+
 - [ ] stylix?
     - note:
         - vim cursor color changes when over a character with foreground-color or somethin
@@ -66,3 +86,5 @@
         - --external
         - --fromPath    ?
         - --toPath      ?
+
+
