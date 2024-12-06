@@ -20,14 +20,20 @@ in
 
     SHELLTYPE = "dev";
     shellHook = ''
+      alias dr="deno run";
+
+
+      
       echo "------------------------";
       echo "Entered $SHELLTYPE environment in:";
       pwd;
       echo "Using these packages:";
-
       deno --version
-
-
+      echo "";
+      echo "           ==           ";
+      echo "";
+      echo "With these aliases:";
+      echo "alias dr=\"deno run\"";
       echo "------------------------";
       '';
   }
