@@ -400,6 +400,7 @@ in
     enableAliases = false;
     settings = {
       sorting.column = "extension";
+      header = true;
     };
   };
 
@@ -529,27 +530,25 @@ in
 
   ### NIXPKGS ###
   # not preferred: install nixpkgs here to your environment
-  home.packages = [
-    pkgs.tldr
+  home.packages = with pkgs; [
+  # tui
+    tldr
 
-    # pkgs.discord??
+  # gui
+    # discord
+  # games
+    # prismlauncher
 
-  # # It is sometimes useful to fine-tune packages, for example, by applying
-  # # overrides. You can do that directly here, just don't forget the
-  # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-  # # fonts?
-  (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
+  # system font
+    (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; })
 
-  # # You can also create simple shell scripts directly inside your
-  # # configuration. For example, this adds a command 'my-hello' to your
-  # # environment:
-  (pkgs.writeShellScriptBin "my-hello" ''
-    echo "Hello, ${config.home.username}!"
-  '')
-
-  # create backup scripts here?
-  # or just link em..?
-];
+    # You can also create simple shell scripts directly inside your
+    # configuration. For example, this adds a command 'my-hello' to your
+    # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  ];
 
   ### ENV VARIABLES ###
   # manage environment variables here
