@@ -38,13 +38,15 @@ Generate a title, from this concept:
 Generate code, from this specification:
 Generate a name, from this concept:
 Generate a slogan, from this campaign:
-Make a comparison, from this data set:
+Make a comparison, from this dataset:
 Make a list, from this search prompt:
 Make a plan, from this objective:
 Make a table, from this data:
 Provide advice, from this situation:
-Report any similarities, within this data set:
-Remove any duplicates, from this data set:
+Report any similarities, within this dataset:
+Remove any duplicates, from this dataset:
+Sort this dataset, alphabetically:
+Sort this dataset, chronologically:
 Suggest ideas, from this problem:
 Suggest improvements, from this feedback:
 Translate text, from this language pair:
