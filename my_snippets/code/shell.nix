@@ -26,25 +26,23 @@ in
 
     SHELLTYPE = "dev";
     shellHook = ''
-      echo "------------------------";
-      echo "Entered $SHELLTYPE environment in:";
+      echo "----------------------------------------";
+      echo "|  Entered $SHELLTYPE environment in:         |";
       pwd;
-      echo "Using these packages:";
-
+      echo "|                                      |";
+      echo "|  Using these packages:               |";
       deno --version
-
-      echo "";
-      echo " ==  ==  ==  ==  ==  == "
-      echo "";
-
-      echo "With these aliases:";
+      echo "|                                      |";
+      echo "|==  ==  ==  ==  ==  ==  ==  ==  ==  ==|";
+      echo "|                                      |";
+      echo "|                                      |";
+      echo "|  With these aliases:                 |";
       for alias in ${toString aliases}; do
         eval $alias
         echo $alias
       done
-
-
-      echo "------------------------";
+      echo "|                                      |";
+      echo "----------------------------------------";
       '';
   }
 
