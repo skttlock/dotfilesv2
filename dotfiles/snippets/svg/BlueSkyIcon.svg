@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient id="color-0" bx:pinned="true" gradientUnits="userSpaceOnUse" gradientTransform="matrix(8.818196, 0, 0, 7.715921, -259.740014, -315.342621)">
+      <title>BlueSky Blue</title>
+      <stop style="stop-color: rgb(0, 112, 255);"/>
+    </linearGradient>
+    <linearGradient id="color-2" bx:pinned="true" gradientUnits="userSpaceOnUse">
+      <title>White</title>
+      <stop style="stop-color: rgb(255, 255, 255);"/>
+    </linearGradient>
+  </defs>
+  <rect style="fill: url(&quot;#color-0&quot;); stroke-width: 0px; pointer-events: none;" id="Background" x="0" y="0" width="500" height="500" rx="0" ry="0">
+    <title>Background</title>
+  </rect>
+</svg>

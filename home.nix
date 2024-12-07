@@ -46,10 +46,11 @@ in
       hms = "home-manager switch";
       hme = "home-manager edit";
       # cd
-
+              # see "c"
+      # za = "z --searchAdjacent";
       # lsd
       ls = "lsd";
-      lsa = "lsd --all";
+      lsa = "lsd --almost-all";
       lst = "lsd --tree --depth=1";
       lstr = "lsd --tree --depth=2";
       lstre = "lsd --tree --depth=3";
@@ -69,6 +70,7 @@ in
       # glo = "git log --oneline";
       # scripts
       # c = "./compile.sh";         # compiles project
+                # or do i want something like c = "z --include=local, parent, child"
       # r = "./run.sh";             # runs project
       # cr = "./compile.sh; ./run.sh";
       # d = "./document.sh";        # generates documentation
