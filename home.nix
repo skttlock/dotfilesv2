@@ -8,12 +8,22 @@ let
     url = "https://github.com/nix-community/nixvim";
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
   });
-in
-  {
+in {
   imports = [
     nixvim.homeManagerModules.nixvim
   ];
   fonts.fontconfig.enable = true;
+
+  #========
+  #|SYSTEM|
+  #========
+  dconf = {
+    settings = {
+      "org/gnome/mutter" = {
+        edge-tiling  = "false";
+      };
+    };
+  };
 
   #======
   #|HOME|
@@ -28,18 +38,26 @@ in
     ];
     # dotfiles
     file = {
+      "/.local/share/todo.txt" = {
+        source = ./my_todo;
+        recursive = true;
+      };
       "/.bin/scripts" = {
-        source = "./scripts";
+        source = ./dotfiles/scripts;
         recursive = true;
         executable = true;
       };
       "/.bin/applications" = {
-        source = "./dotfiles/applications";
+        source = ./dotfiles/applications;
         recursive = true;
         executable = true;
       };
-      "/.local/share/todo.txt" = {
-        source = "./dotfiles/todo.txt/";
+      "/.bin/.snippets" = {
+        source = ./dotfiles/snippets;
+        recursive = true;
+      };
+      "/Templates" = {
+        source = ./dotfiles/templates;
         recursive = true;
       };
     };
