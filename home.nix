@@ -19,18 +19,28 @@ in
   #|HOME|
   #======
   home = {
-    sessionVariables = {
-      PATH = "${config.home.homeDirectory}/.scripts/scripts}";
-    };
     username = "joshuaforeman";
     homeDirectory = "/home/joshuaforeman";
-    stateVersion = "24.05"; # josh u are not mart enough to change this
+    stateVersion = "24.05"; # josh u are not mrt enough to change this
+    sessionPath = [
+      "$HOME/.bin/scripts"
+      "$HOME/.apps/"
+    ];
     # dotfiles
     file = {
-      "dotfiles/scripts/scripts" = {
-        source = ./scripts;
+      "/.bin/scripts" = {
+        source = "./scripts";
         recursive = true;
         executable = true;
+      };
+      "/.bin/applications" = {
+        source = "./dotfiles/applications";
+        recursive = true;
+        executable = true;
+      };
+      "/.local/share/todo.txt" = {
+        source = "./dotfiles/todo.txt/";
+        recursive = true;
       };
     };
 
@@ -38,7 +48,12 @@ in
     #|PACKAGES|
     #==========
     packages = with pkgs; [
-      (pkgs.nerdfonts.override { fonts = [ "Cousine" ]; }) # monospace
+      # fonts
+      cascadia-code # monocode
+      open-sans     # sans serif
+      arcticons-sans # sans serif
+      poly          # serif
+      inriafonts    # sans serif + serif
       # tui
       tldr
     ];
@@ -60,6 +75,8 @@ in
         hms = "home-manager switch";
         hme = "home-manager edit";
         # cd
+        # cdb = "cd -";
+        za = "zoxide add .";
         # za = "z --searchAdjacent";
         # lsd
         ls = "lsd";
@@ -224,11 +241,23 @@ in
         "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
         " augroup END
       '';
-      colorscheme = "default";
+      # - - - - - -
+      #|APPEARANCE|
+      # - - - - - -
+      colorschemes.kanagawa = {
+        enable = true;
+        settings = {
+          commentStyle.italic = true;
+          compile = true;
+          dimInactive = true;
+          transparent = true;
+        };
+      };
       wrapRc = false;
+      # - - - -
+      #|PLUGINS|
+      # - - - -
       plugins = {
-        ### CURRENT
-        nix.enable = true;
         neorg = { 
           enable = true;
           modules = {
@@ -243,6 +272,8 @@ in
             };
           };
         };
+        ### CURRENT
+        nix.enable = true;
         # mini.nvim, a collection of 40+ plugins
         mini = { 
           enable = true;
