@@ -22,6 +22,9 @@ in {
       "org/gnome/mutter" = {
         edge-tiling  = "false";
       };
+      "org/gnome/settings-daemon/plugins/power" = {
+        lid-close-suspend-with-external-monitor = "nothing";
+      };
     };
   };
 
@@ -35,11 +38,12 @@ in {
     sessionPath = [
       "$HOME/.bin/scripts"
       "$HOME/.apps/"
+      "$HOME/Templates"
     ];
     # dotfiles
     file = {
-      "/.local/share/todo.txt" = {
-        source = ./my_todo;
+      "/.local/share/todo.txt" = { #this is a directory, yes, I know.
+        source = ./todo;
         recursive = true;
       };
       "/.bin/scripts" = {
@@ -62,20 +66,22 @@ in {
       };
     };
 
-    #==========
-    #|PACKAGES|
-    #==========
-    packages = with pkgs; [
-      # fonts
-      cascadia-code # monocode
-      open-sans     # sans serif
-      arcticons-sans # sans serif
-      poly          # serif
-      inriafonts    # sans serif + serif
-      # tui
-      tldr
-    ];
   };
+
+  #==========
+  #|PACKAGES|
+  #==========
+  home.packages = with pkgs; [
+    # fonts
+    cascadia-code # monocode
+    open-sans     # sans serif
+    arcticons-sans # sans serif
+    poly          # serif
+    inriafonts    # sans serif + serif
+    # tui
+    tldr
+    # gui
+  ];
 
   #==========
   #|PROGRAMS|
@@ -83,6 +89,7 @@ in {
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+    # shell language... maybe go fish one day
     bash = {
       enable = true;
       sessionVariables = {
@@ -94,27 +101,17 @@ in {
         hme = "home-manager edit";
         # cd
         # cdb = "cd -";
-        za = "zoxide add .";
+        # za = "zoxide add .";
         # za = "z --searchAdjacent";
         # lsd
-        ls = "lsd";
         lsa = "lsd --almost-all";
         lst = "lsd --tree --depth=1";
         lstr = "lsd --tree --depth=2";
         lstre = "lsd --tree --depth=3";
         lstree = "lsd --tree --depth=4";
         # nix
-         nix-command = "nix --extra-experimental-features nix-command";
+        nix-command = "nix --extra-experimental-features nix-command";
         ns = "nix-shell";
-        # git
-        gd = "git diff";
-        ga = "git add";
-        gp = "git patch";
-        gc = "git commit";
-        gcm = "git commit --message";
-        gca = "git commit --amend";
-        gl  = "git log";
-        glo = "git log --oneline";
       };
       profileExtra = ''
         # .bash_profile
@@ -148,23 +145,24 @@ in {
         eval "$(zoxide init bash)"
       '';
     };
+    # version control
     git = {
       enable = true;
       userName = "Joshua Foreman";
       userEmail = "9174473+skttlock@users.noreply.github.com"; # private, github-provided, commit email
       aliases = {
         aa = "add --all";
+        c = "commit";
         cm = "commit --message";
+        ca = "commit --amend";
+        l = "log";
         lo = "log --oneline";
         last = "log -1 HEAD --stat";
-
         # search log by author
         # short diff
-
         unstage = "reset HEAD";
         uncache = "rm --cached";
         patch = "git add --patch";
-
         s = "switch";
       };
       extraConfig = {
@@ -174,52 +172,10 @@ in {
       };
     };
     gh.enable = true;
+    # network via ssh
     ssh = { enable = true; };
-    borgmatic = {
-      enable = false;
-      backups = {
-        vaults = {
-          location = {
-            sourceDirectories = [
-              "/$HOME/Documents/joshua-journal"
-              "/$HOME/Documents/my-wiki"
-              "/$HOME/Documents/school-notes"
-            ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-        projects = {
-          location = {
-            sourceDirectories = [ "/$HOME/Documents/Projects" ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-        pictures = {
-          location = {
-            sourceDirectories = [ "/$HOME/Pictures" ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-        music = {
-          location = {
-            sourceDirectories = [ "/$HOME/Music" ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-        video = {
-          location = {
-            sourceDirectories = [ "/$HOME/Videos" ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-        library = {
-          location = {
-            sourceDirectories = [ "/$HOME/Documents/Library" ];
-            repositories = [ "/path/to/repo" ];
-          };
-        };
-      };
-    };
+    # editors
+    emacs.enable = true;
     nixvim = {
       enable = true;
       defaultEditor = true;
@@ -240,8 +196,8 @@ in {
         set autoindent
         set spell spelllang=en_us
         set foldmethod=indent
-        set foldlevel=0
-        set scrolloff=29
+        set foldlevel=5
+
         set wildmenu
         " Make wildmenu behave like similar to Bash completion.
         set wildmode=list:longest
@@ -259,79 +215,49 @@ in {
         "   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
         " augroup END
       '';
+      wrapRc = false;
       # - - - - - -
       #|APPEARANCE|
       # - - - - - -
       colorschemes.kanagawa = {
         enable = true;
         settings = {
+          theme = "dragon";
           commentStyle.italic = true;
           compile = true;
           dimInactive = true;
           transparent = true;
+          background.light = "lotus";
+          background.dark = "dragon";
         };
       };
-      wrapRc = false;
       # - - - -
       #|PLUGINS|
       # - - - -
       plugins = {
-        neorg = { 
-          enable = true;
-          modules = {
-            "core.defaults" = {};
-            "core.dirman" = {
-              config = {
-                workspaces = {
-                  home = "~/Documents/notes/home";
-                  work = "~/Documents/notes/work";
-                };
-              };
-            };
-          };
-        };
-        ### CURRENT
-        nix.enable = true;
-        # mini.nvim, a collection of 40+ plugins
         mini = { 
           enable = true;
+          mockDevIcons = true;
           modules = {
-
             # "editing experience"
             ai = {};
             operators = {};
-            pairs = {};
             surround = {
               respect_selection_type = true;
             };
-
             comment = {};
-
             completion = {};
-
+            clue = {};
             # "general workflow"
             bracketed = {};
-            files = {};
             jump2d = {
               view = {
                 n_steps_ahead = 2;
               };
             };
-            pick = {};
-
             # "appearance"
-            # animate = {};         # might remove
-            # hues = {
-            #   background = "#1c2617";
-            #   foreground = "#c3c8c2";
-            #   n_hues = 8;
-            #   plugins = {
-            #     default = true;
-            #   };
-            # };
             icons = {};
             notify = {};
-
             statusline = {};
             tabline = {
               # format buffer line:
@@ -343,78 +269,92 @@ in {
                 style = "sign";
               };
             };
-
-            #### TESTING
           };
         };
-        # ui
-        gitblame = {
-          enable = true;
-          settings = {
-            delay = 50;
-            message_template = "<summary>";
-            set_extmark_options = {
-              virt_text_pos = "right_align";
-            };
-          };
-        };
-        which-key = {
-          enable = true;
-          settings = {
-            notify = true;
-          };
-        };
-        treesitter.enable = true;
-        lsp-status.enable = true;
+        ### Quality of Life plugins
+        # reading
+        helpview.enable = true;
+        guess-indent.enable = true;
+        # searching
+        telescope.enable = true;
+        harpoon.enable = true;
+        # focusing
+        zen-mode.enable = true;
+        twilight.enable = true;
+        ### Note-taking plugins
+        zk.enable = true;
+          # maybe C-n + Z
+        vimtex.enable = false;
+        telekasten.enable = false;
+        mkdnflow.enable = false;
+        orgmode.enable = false;
+        ### Miscellaneous plugins
+        mark-radar.enable = true;   # mark navigation
+        sniprun.enable = true;      # visual-selected code execution
+        colorizer.enable = true;    # highlight color codes
+        neocord.enable = false;      # discord presence
+        lz-n.enable = false;        # lazy load
+        # something that draws... Venn.nvim seems great
+        ### Coding plugins
         lsp = {
           enable = true;
           inlayHints = true;
           servers = {
             nil_ls.enable = true;     # nix
             bashls.enable = true;     # bash
+
             ccls.enable = true;       # c/c++
-            zls.enable = true;        # zig
-            metals.enable = true;     # scala
-            jdtls.enable = true;      # java... tbd
+            zls.enable = false;       # zig
+
+            metals.enable = false;    # scala
+            jdtls.enable = true;      # java
+
             html.enable = true;       # html
             cssls.enable = true;      # css
-            denols.enable = true;     # js
+            denols.enable = true;     # js/ts
+
+            jsonls.enable = true;     # json
+
             marksman.enable = true;   # markdown
-          # vale_ls.enable = true;    # technical writing
-          jsonls.enable = true;     # json
+            vale_ls.enable = false;   # technical writing
+            ltex.enable = false;      # latex
           };
         };
-          # incomplete
-          # general
-        # vimtex.enable = true;
-        # trouble.enable = true;
-        # lint.enable = true;
-        # telescope.enable = true;
-
-          # lazy loading
-        #lz-n = {
-        #  enable = true;
-        #};
-
-          # snippets
-          # testing
-        # emmet.enable = true;
-        # dap.enable = true;
-        # neotest.enable = true;
-        # fugitive.enable = true;
-
-         # maybe later
-        # project-nvim.enable = true;
-        # ollama.enable = true;
-        # typst-vim.enable = true;
-        # sniprun.enable = true;
-        # rest.enable = true;
-        # refactoring.enable = true;
-        # otter.enable = true;
-        # guess-indent.enable = true;
-        vim-css-color.enable = true;
+        lsp-status.enable = true;
+        treesitter = {
+          enable = true;
+          settings = {
+            auto_install = true;
+            highlight.enable = true;
+            indent.enable = true;
+          };
+        };
+        # git
+        gitblame = {              # in-line git blame message
+          enable = true;
+          settings = {
+            delay = 500;
+            message_template = "<summary>";
+            set_extmark_options = {
+              virt_text_pos = "right_align";
+            };
+          };
+        };
+        # test-driven development
+        neotest.enable = false;     # better testing
+          ## maybe C-n + T
+        # debugging
+        dap.enable = false;         # debug adapter protocol
+        # snippets
+        emmet.enable = false;       # superior web snippets, to be learned
+        # commenting
+        neogen.enable = true;       # better code annotations
+          ## maybe C-n + G
+        # maybe later...
+        ollama.enable = false;      # interact with LLMs
       };
     };
+    # 
     lsd = {
       enable = true;
       enableAliases = false;
@@ -422,9 +362,10 @@ in {
         sorting.column = "extension";
       };
     };
-    zoxide.enable = true;
-    fzf.enable = true;
-    ranger.enable = true;
+    zathura.enable = false;        # document viewer, needs config
+    zoxide.enable = true;         # better cd, meh
+    fzf.enable = true;            # fuzzy find
+    ranger.enable = true;         # tui file system navigation
     tmux = {
       enable = true;
       keyMode = "vi";
@@ -432,6 +373,8 @@ in {
       ];
     };
     less.enable = true;
+    zk.enable = true;
+
     #------------
     #|APPEARANCE|
     #------------
