@@ -1,0 +1,22 @@
+
+{
+    inputs = {
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+        home-manager.url = "github:nix-community/home-manager";
+        nvf.url = "github:notashelf/nvf";
+    };
+
+    outputs = { nixpkgs, home-manager, nvf, ... }:
+        let
+            system = "x86_64-linux";
+            pkgs = nixpkgs.legacyPackages.${system};
+        in {
+            "joshuaf@nixos" = home-manager.lib.homeManagerConfiguration {
+                inherit pkgs;
+                modules = [
+                    nvf.homeManagerModules.default
+                    ./home.nix
+                ];
+            };
+        };
+}
