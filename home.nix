@@ -28,24 +28,31 @@ in {
     };
   };
 
+
+
+
   #======
   #|HOME|
   #======
   home = {
-    username = "joshuaforeman";
-    homeDirectory = "/home/joshuaforeman";
-    stateVersion = "24.05"; # josh u are not mrt enough to change this
+    username = "joshuaf";
+    homeDirectory = "/home/joshuaf";
+    stateVersion = "24.11"; # josh u are not mrt enough to change this
     sessionPath = [
       "$HOME/.bin/scripts"
       "$HOME/.apps/"
       "$HOME/Templates"
     ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
     # dotfiles
     file = {
-      "/.local/share/todo.txt" = { #this is a directory, yes, I know.
-        source = ./todo;
-        recursive = true;
-      };
+#     "/.local/share/todo.txt" = { #this is a directory, yes, I know.
+#       source = ./todo;
+#       recursive = true;
+#     };
       "/.bin/scripts" = {
         source = ./dotfiles/scripts;
         recursive = true;
@@ -93,12 +100,14 @@ in {
     bash = {
       enable = true;
       sessionVariables = {
-        EDITOR = "vim";
-        VISUAL = "vim";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
       };
       shellAliases = {
         hms = "home-manager switch";
         hme = "home-manager edit";
+        nre = "sudo nixos-rebuild edit";
+        nrs = "nixos-rebuild switch --use-remote-sudo";
         # cd
         # cdb = "cd -";
         # za = "zoxide add .";
@@ -134,7 +143,7 @@ in {
         # export SYSTEMD_PAGER=
         # User specific aliases and functions
         if [ -d ~/.bashrc.d ]; then
-          for rc in ~/.bashrc.d/*; do
+          for rc in ~/.bashrc.d/\*; do
             if [ -f "$rc" ]; then
               . "$rc"
             fi
