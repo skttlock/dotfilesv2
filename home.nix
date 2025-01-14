@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   homeDir = builtins.getEnv "HOME";
   existingNixPath = builtins.getEnv "NIX_PATH";
   nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
@@ -17,14 +20,13 @@ in {
   ];
   fonts.fontconfig.enable = true;
 
-
   #========
   #|SYSTEM|
   #========
   dconf = {
     settings = {
       "org/gnome/mutter" = {
-        edge-tiling  = "false";
+        edge-tiling = "false";
       };
       "org/gnome/settings-daemon/plugins/power" = {
         lid-close-suspend-with-external-monitor = "nothing";
@@ -38,7 +40,7 @@ in {
   home = {
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
-    stateVersion = "24.11"; # josh u are not mrt enough to change this
+    stateVersion = "24.05"; # josh u are not mrt enough to change this
     sessionPath = [
       "$HOME/.bin/scripts"
       "$HOME/.apps/"
@@ -50,10 +52,10 @@ in {
     };
     # dotfiles
     file = {
-#     "/.local/share/todo.txt" = { #this is a directory, yes, I know.
-#       source = ./todo;
-#       recursive = true;
-#     };
+      #     "/.local/share/todo.txt" = { #this is a directory, yes, I know.
+      #       source = ./todo;
+      #       recursive = true;
+      #     };
       "/.bin/scripts" = {
         source = ./dotfiles/scripts;
         recursive = true;
@@ -68,10 +70,10 @@ in {
   home.packages = with pkgs; [
     # fonts
     cascadia-code # monocode
-    open-sans     # sans serif
+    open-sans # sans serif
     arcticons-sans # sans serif
-    poly          # serif
-    inriafonts    # sans serif + serif
+    poly # serif
+    inriafonts # sans serif + serif
     # tui
     tldr
     # gui
@@ -87,8 +89,8 @@ in {
     bash = {
       enable = true;
       sessionVariables = {
-        EDITOR = "nvim";
-        VISUAL = "nvim";
+        EDITOR = "vim";
+        VISUAL = "vim";
       };
       shellAliases = {
         hms = "home-manager switch";
@@ -169,16 +171,16 @@ in {
     };
     gh.enable = true;
     # network via ssh
-    ssh = { enable = true; };
+    ssh = {enable = true;};
     # editors
-	# ----------
-	# | NEOVIM |
-	# ----------
+    # ----------
+    # | NEOVIM |
+    # ----------
     nixvim = {
-      enable = true;
+      enable = false;
       defaultEditor = true;
       viAlias = true;
-      vimAlias = true;
+      vimAlias = false;
       opts = {
         smartcase = true;
         expandtab = true;
@@ -233,7 +235,7 @@ in {
       #|PLUGINS|
       # - - - -
       plugins = {
-        mini = { 
+        mini = {
           enable = true;
           mockDevIcons = true;
           modules = {
@@ -281,50 +283,49 @@ in {
         twilight.enable = true;
         ### Note-taking plugins
         zk.enable = true;
-          # maybe C-n + Z
+        # maybe C-n + Z
         vimtex.enable = false;
         telekasten.enable = false;
         mkdnflow.enable = false;
         orgmode.enable = false;
         ### Miscellaneous plugins
-        mark-radar.enable = true;   # mark navigation
-        sniprun.enable = true;      # visual-selected code execution
-        colorizer.enable = true;    # highlight color codes
-        neocord.enable = false;      # discord presence
-        lz-n.enable = false;        # lazy load
+        mark-radar.enable = true; # mark navigation
+        sniprun.enable = true; # visual-selected code execution
+        colorizer.enable = true; # highlight color codes
+        neocord.enable = false; # discord presence
+        lz-n.enable = false; # lazy load
         # something that draws... Venn.nvim seems great
+
         ### Coding plugins
         lint = {
           enable = true;
-          lintersByFt = {
-            janet = ["janet"];
-          };
         };
         lsp = {
           enable = true;
           inlayHints = true;
           servers = {
-            nil_ls.enable = true;     # nix
-            bashls.enable = true;     # bash
+            nil_ls.enable = true; # nix
+            bashls.enable = true; # bash
 
-            ccls.enable = true;       # c/c++
-            zls.enable = false;       # zig
-            janet_lsp = {             # janet
-              enable = true;
+            ccls.enable = true; # c/c++
+            zls.enable = false; # zig
+            janet_lsp = {
+              # janet
+              enable = false;
               package = pkgs.janet;
             };
-            metals.enable = false;    # scala
-            jdtls.enable = true;      # java
+            metals.enable = false; # scala
+            jdtls.enable = true; # java
 
-            html.enable = true;       # html
-            cssls.enable = true;      # css
-            denols.enable = true;     # js/ts
+            html.enable = true; # html
+            cssls.enable = true; # css
+            denols.enable = true; # js/ts
 
-            jsonls.enable = true;     # json
+            jsonls.enable = true; # json
 
-            marksman.enable = true;   # markdown
-            vale_ls.enable = false;   # technical writing
-            ltex.enable = false;      # latex
+            marksman.enable = true; # markdown
+            vale_ls.enable = false; # technical writing
+            ltex.enable = false; # latex
           };
         };
         lsp-status.enable = true;
@@ -340,10 +341,11 @@ in {
         };
         # repl interaction
         conjure = {
-          enable = true;
+          enable = false;
         };
         # git
-        gitblame = {              # in-line git blame message
+        gitblame = {
+          # in-line git blame message
           enable = true;
           settings = {
             delay = 500;
@@ -354,21 +356,21 @@ in {
           };
         };
         # test-driven development
-        neotest.enable = false;     # better testing
-          ## maybe C-n + T
+        neotest.enable = false; # better testing
+        ## maybe C-n + T
         # debugging
-        dap.enable = false;         # debug adapter protocol
+        dap.enable = false; # debug adapter protocol
         # snippets
-        emmet.enable = false;       # superior web snippets, to be learned
+        emmet.enable = false; # superior web snippets, to be learned
         # commenting
-        neogen.enable = true;       # better code annotations
-          ## maybe C-n + G
+        neogen.enable = true; # better code annotations
+        ## maybe C-n + G
         # maybe later...
-        ollama.enable = false;      # interact with LLMs
+        ollama.enable = false; # interact with LLMs
       };
     };
     emacs.enable = true;
-    # 
+    #
     lsd = {
       enable = true;
       enableAliases = false;
@@ -376,10 +378,10 @@ in {
         sorting.column = "extension";
       };
     };
-    zathura.enable = false;        # document viewer, needs config
-    zoxide.enable = true;         # better cd, meh
-    fzf.enable = true;            # fuzzy find
-    ranger.enable = true;         # tui file system navigation
+    zathura.enable = false; # document viewer, needs config
+    zoxide.enable = true; # better cd, meh
+    fzf.enable = true; # fuzzy find
+    ranger.enable = true; # tui file system navigation
     tmux = {
       enable = true;
       keyMode = "vi";
