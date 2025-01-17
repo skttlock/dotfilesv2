@@ -40,7 +40,7 @@ in {
   home = {
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
-    stateVersion = "24.05"; # josh u are not mrt enough to change this
+    stateVersion = "24.11"; # josh u are not mrt enough to change this
     sessionPath = [
       "$HOME/.bin/scripts"
       "$HOME/.apps/"
@@ -95,7 +95,7 @@ in {
       shellAliases = {
         hms = "home-manager switch";
         hme = "home-manager edit";
-        nre = "sudoedit /etc/nixos/configuration.nix";
+        nre = "nvim /etc/nixos/configuration.nix";
         nrs = "nixos-rebuild switch --use-remote-sudo";
         # cd
         # cdb = "cd -";
