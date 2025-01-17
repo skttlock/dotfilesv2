@@ -1,14 +1,7 @@
 {pkgs, ...}: let
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    # When using a different channel you can use `ref = "nixos-<version>"` to set it here
-  });
 in {
   imports = [
-    nixvim.homeManagerModules.nixvim
-    # ./nixvim/nixvim.nix
-    # inputs.nvf.homeManagerModules.default
-    # ./neovim/neovim.nix
+    ./terminal.nix
   ];
   fonts.fontconfig.enable = true;
 
@@ -180,29 +173,6 @@ in {
         sorting.column = "extension";
       };
     };
-    # ----------------------
-    # | TERMINAL UTILITIES |
-    # ----------------------
-    zoxide.enable = true; # better cd, meh
     zathura.enable = false; # document viewer, needs config
-    fzf.enable = true; # fuzzy find
-    ranger.enable = true; # tui file system navigation
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-      plugins = [
-      ];
-    };
-    less.enable = true;
-    zk.enable = true;
-
-    #------------
-    #|APPEARANCE|
-    #------------
-    fastfetch.enable = true;
-    starship = {
-      enable = true;
-      settings = {};
-    };
   };
 }
