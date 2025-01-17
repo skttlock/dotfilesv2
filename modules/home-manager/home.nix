@@ -1,41 +1,24 @@
-{pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
+  homeDir = builtins.getEnv "HOME";
+  existingNixPath = builtins.getEnv "NIX_PATH";
+  nixPath = "${homeDir}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
 in {
   imports = [
-    ./terminal.nix
+    ./git.nix
   ];
   fonts.fontconfig.enable = true;
-
-  #========
-  #|SYSTEM|
-  #========
-  dconf = {
-    settings = {
-      "org/gnome/mutter" = {
-        edge-tiling = "false";
-      };
-      "org/gnome/settings-daemon/plugins/power" = {
-        lid-close-suspend-with-external-monitor = "nothing";
-      };
-    };
-  };
-  gtk.cursorTheme = {
-    package = pkgs.banana-cursor;
-    name = "Banana";
-  };
 
   #======
   #|HOME|
   #======
   home = {
-    # file.".icons/default".source = "${pkgs.banana-cursor}/shares/icons/Banana";
-    pointerCursor = {
-      package = pkgs.banana-cursor;
-      name = "Banana";
-      gtk.enable = true;
-    };
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
-    stateVersion = "24.05"; # josh u are not mrt enough to change this
+    stateVersion = "24.11"; # josh u are not mrt enough to change this
     sessionPath = [
       "$HOME/.bin/scripts"
       "$HOME/.apps/"
@@ -45,19 +28,14 @@ in {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
-
+    # dotfiles
     file = {
       #     "/.local/share/todo.txt" = { #this is a directory, yes, I know.
       #       source = ./todo;
       #       recursive = true;
       #     };
       "/.bin/scripts" = {
-        source = ./scripts;
-        recursive = true;
-        executable = true;
-      };
-      "./bin/snippets/mine" = {
-        source = ./my-snippets;
+        source = ./dotfiles/scripts;
         recursive = true;
         executable = true;
       };
@@ -89,10 +67,11 @@ in {
     bash = {
       enable = true;
       sessionVariables = {
-        EDITOR = "vim";
-        VISUAL = "vim";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
       };
       shellAliases = {
+        pee = "poo";
         hms = "home-manager switch";
         hme = "home-manager edit";
         nre = "sudoedit /etc/nixos/configuration.nix";
@@ -172,9 +151,9 @@ in {
     gh.enable = true;
     # network via ssh
     ssh = {enable = true;};
-    #------------
-    #|APPEARANCE|
-    #------------
+    # editors
+    emacs.enable = true;
+    #
     lsd = {
       enable = true;
       enableAliases = false;
@@ -183,5 +162,25 @@ in {
       };
     };
     zathura.enable = false; # document viewer, needs config
+    zoxide.enable = true; # better cd, meh
+    fzf.enable = true; # fuzzy find
+    ranger.enable = true; # tui file system navigation
+    tmux = {
+      enable = true;
+      keyMode = "vi";
+      plugins = [
+      ];
+    };
+    less.enable = true;
+    zk.enable = true;
+
+    #------------
+    #|APPEARANCE|
+    #------------
+    fastfetch.enable = true;
+    starship = {
+      enable = true;
+      settings = {};
+    };
   };
 }
