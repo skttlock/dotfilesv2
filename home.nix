@@ -43,14 +43,19 @@ in {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
-    # dotfiles
+
     file = {
       #     "/.local/share/todo.txt" = { #this is a directory, yes, I know.
       #       source = ./todo;
       #       recursive = true;
       #     };
       "/.bin/scripts" = {
-        source = ./dotfiles/scripts;
+        source = ./scripts;
+        recursive = true;
+        executable = true;
+      };
+      "./bin/snippets/mine" = {
+        source = ./my-snippets;
         recursive = true;
         executable = true;
       };
