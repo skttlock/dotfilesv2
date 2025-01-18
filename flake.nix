@@ -26,13 +26,15 @@
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
-        ./configuration.nix
+        ./systems/laptop/configuration.nix
         nvf.nixosModules.default
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          # home-manager.user.joshuaf = import ./home.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            user.joshuaf = import ./modules/home-manager/home.nix;
+          };
         }
       ];
     };
