@@ -8,9 +8,15 @@ _Managed with the Nix Home-Manager tool._
 
 ## To-Do
 
-- [/] restructure
+- [x] restructure
 - [ ] update file links per new structure
 - [ ] update inputs to... unstable or 24.11
 - [ ] implement flake
 - [ ] check for selective update capability with flake usage
       (`home-manager switch`)
+
+  ### Configuration
+
+  - [ ] `zk` (`~/Documents/Zettle`)
+  - [ ] `tmux`
+  - [ ]
