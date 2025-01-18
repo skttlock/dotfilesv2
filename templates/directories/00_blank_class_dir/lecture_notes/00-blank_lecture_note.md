@@ -1,6 +1,0 @@
-
-## Vocabulary
-
-## Notes
-
-## Prose
