@@ -11,9 +11,9 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     # Include system config
-    ./modules/nixos/system.nix
-    ./modules/nixos/programs.nix
-    ./modules/nixos/fonts.nix
+    ./system.nix
+    ./programs.nix
+    ../fonts.nix
     # Include home-manager
     # <home-manager/nixos>
     # Include user config
@@ -22,18 +22,19 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+    useXkbConfig = true; # use xkb.options in tty.
+  };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services = {
+    xserver.enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -51,12 +52,6 @@
       #  thunderbird
     ];
   };
-
-  # # Install fonts
-  # fonts.packages = with pkgs; [
-  #   nerd-fonts.comic-shanns-mono
-  #   inriafonts
-  # ];
 
   xdg.portal.enable = true;
 

@@ -11,7 +11,12 @@ _Managed with the Nix Home-Manager tool._
 - [x] restructure
 - [ ] update file links per new structure
 - [ ] update inputs to... unstable or 24.11
+  - [ ] update nixpkgs/NixOS
+  - [ ] update home-manager
 - [ ] implement flake
+  - [ ] test without home-manager
+  - [ ] integrate home-manager
+  - [ ] test with home-manager
 - [ ] check for selective update capability with flake usage
       (`home-manager switch`)
 
@@ -19,4 +24,5 @@ _Managed with the Nix Home-Manager tool._
 
   - [ ] `zk` (`~/Documents/Zettle`)
   - [ ] `tmux`
+  - [ ] `ranger`
   - [ ]
