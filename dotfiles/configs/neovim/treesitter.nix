@@ -1,5 +1,5 @@
 _: {
-  treesitter = {
+  programs.nvf.treesitter = {
     enable = true;
     fold = true;
     highlight.enable = true;

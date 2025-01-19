@@ -1,5 +1,5 @@
 _: {
-  statusline.lualine = {
+  programs.nvf.statusline.lualine = {
     enable = true;
     refresh = {
       statusline = 10;

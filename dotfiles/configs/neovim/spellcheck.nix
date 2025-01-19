@@ -1,5 +1,5 @@
 _: {
-  spellcheck = {
+  programs.nvf.spellcheck = {
     enable = true;
     programmingWordlist.enable = true;
   };

@@ -1,5 +1,5 @@
 _: {
-  languages = {
+  programs.nvf.languages = {
     enableLSP = true;
     enableFormat = true;
     enableTreesitter = true;
