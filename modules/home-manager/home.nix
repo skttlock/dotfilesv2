@@ -33,6 +33,7 @@ in {
       name = "Banana";
       gtk.enable = true;
       x11.enable = true;
+      hyprcursor.enable = true;
     };
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
