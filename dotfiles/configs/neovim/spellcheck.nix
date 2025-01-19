@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.spellcheck = {
+  programs.nvf.settings.vim.spellcheck = {
     enable = true;
     programmingWordlist.enable = true;
   };

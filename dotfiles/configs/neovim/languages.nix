@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.languages = {
+  programs.nvf.settings.vim.languages = {
     enableLSP = true;
     enableFormat = true;
     enableTreesitter = true;

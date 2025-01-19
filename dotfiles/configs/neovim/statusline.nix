@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.statusline.lualine = {
+  programs.nvf.settings.vim.statusline.lualine = {
     enable = true;
     refresh = {
       statusline = 10;

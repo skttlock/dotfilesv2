@@ -1,5 +1,5 @@
 _: {
-  programs.nvf.debugger = {
+  programs.nvf.settings.vim.debugger = {
     nvim-dap = {
       enable = true;
       ui.enable = true;
