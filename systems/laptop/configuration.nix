@@ -13,7 +13,7 @@
     # Include system config
     ./system.nix
     ./programs.nix
-    ../fonts.nix
+    ../../modules/fonts.nix
     # Include home-manager
     # <home-manager/nixos>
     # Include user config

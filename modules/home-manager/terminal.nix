@@ -3,6 +3,10 @@ _: {
   # | TERMINAL UTILITIES |
   # ----------------------
   programs = {
+    # TERMINAL EMULATOR
+    ghosty = {
+      enable = true;
+    };
     zoxide.enable = true; # better cd, meh
     fzf.enable = true; # fuzzy find
     ranger.enable = true; # tui file system navigation

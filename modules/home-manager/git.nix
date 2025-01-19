@@ -27,6 +27,8 @@
         defaultBranch = "main";
       };
     };
+    # plugins
+    delta.enable = true;
   };
 
   programs.gh.enable = true;

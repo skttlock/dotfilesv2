@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./programs/neovim/neovim.nix
+    ../../dotfiles/configs/neovim/neovim.nix
   ];
   programs.steam = {
     enable = true;

@@ -1,4 +1,13 @@
 _: {
+  imports = [
+    ./debugger.nix
+    #./keybinds.nix
+    ./git.nix
+    ./languages.nix
+    ./spellcheck.nix
+    ./statusline.nix
+    ./treesitter.nix
+  ];
   programs.nvf = {
     enable = true;
     settings.vim = {

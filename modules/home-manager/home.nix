@@ -2,6 +2,7 @@
 in {
   imports = [
     ./terminal.nix
+    ./git.nix
   ];
   fonts.fontconfig.enable = true;
 
@@ -35,6 +36,7 @@ in {
       x11.enable = true;
       hyprcursor.enable = true;
     };
+
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
     stateVersion = "24.05"; # josh u are not mrt enough to change this
@@ -53,15 +55,20 @@ in {
       #       source = ./todo;
       #       recursive = true;
       #     };
+      "/Templates" = {
+        source = ../../dotfiles/templates/documents;
+        recursive = true;
+        executable = false;
+      };
       "/.bin/scripts" = {
-        source = ./scripts;
+        source = ../../dotfiles/scripts;
         recursive = true;
         executable = true;
       };
       "./bin/snippets/mine" = {
-        source = ./my-snippets;
+        source = ../../dotfiles/templates/snippets;
         recursive = true;
-        executable = true;
+        executable = false;
       };
     };
   };
@@ -70,12 +77,7 @@ in {
   #|PACKAGES|
   #==========
   home.packages = with pkgs; [
-    # fonts
-    cascadia-code # monocode
-    open-sans # sans serif
-    arcticons-sans # sans serif
-    poly # serif
-    inriafonts # sans serif + serif
+    # fonts are declare in ../fonts.nix
     # tui
     tldr
     # gui
