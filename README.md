@@ -20,9 +20,21 @@ _Managed with the Nix Home-Manager tool._
 - [ ] check for selective update capability with flake usage
       (`home-manager switch`)
 
-  ### Configuration
+### Configuration
 
-  - [ ] `zk` (`~/Documents/Zettle`)
-  - [ ] `tmux`
-  - [ ] `ranger`
-  - [ ]
+- [ ] `zk` (`~/Documents/Zettle`)
+- [ ] `tmux`
+- [ ] `ranger`
+- [ ]
+
+#### NeoVim flake
+
+Also known as "nvf"
+
+- [ ] Key binds
+  - [ ] `esc` always exits to normal on one press
+- [ ] spell file
+- [ ] LuaSnip
+  - [ ] add my own snippets _folder_
+    - [ ] create some code comment snippets
+      - boxed headers
