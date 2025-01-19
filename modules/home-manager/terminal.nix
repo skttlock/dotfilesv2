@@ -4,7 +4,7 @@ _: {
   # ----------------------
   programs = {
     # TERMINAL EMULATOR
-    ghosty = {
+    ghostty = {
       enable = true;
     };
     zoxide.enable = true; # better cd, meh
