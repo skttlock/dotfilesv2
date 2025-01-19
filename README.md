@@ -29,12 +29,23 @@ _Managed with the Nix Home-Manager tool._
 
 #### NeoVim flake
 
-Also known as "nvf"
+Also known as [nvf](https://github.com/NotAShelf/nvf)
 
+- [ ] misc.
+  - [ ] trailing white space character
+  - [ ] set spell file
 - [ ] Key binds
   - [ ] `esc` always exits to normal on one press
-- [ ] spell file
+  - [ ] auto-complete
+    - [ ] `up`/`down` navigate auto-complete suggestions
+    - [ ] `right` accept suggestion?
 - [ ] LuaSnip
   - [ ] add my own snippets _folder_
     - [ ] create some code comment snippets
       - boxed headers
+    - [ ] some assignment (markdown) snippets
+      - [ ] directory table of contents
+      - [ ] assignment details
+    - [ ] todo.txt snippets
+      - [ ] blank entry
+      - [ ] entry w/ deadline
