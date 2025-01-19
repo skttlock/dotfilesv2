@@ -32,6 +32,7 @@ in {
       package = pkgs.banana-cursor;
       name = "Banana";
       gtk.enable = true;
+      x11.enable = true;
     };
     username = "joshuaf";
     homeDirectory = "/home/joshuaf";
