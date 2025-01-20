@@ -1,4 +1,7 @@
 _: {
+    imports = [
+        ../../dotfiles/configs/tmux.nix
+    ];
   # ----------------------
   # | TERMINAL UTILITIES |
   # ----------------------
@@ -10,12 +13,6 @@ _: {
     zoxide.enable = true; # better cd, meh
     fzf.enable = true; # fuzzy find
     ranger.enable = true; # tui file system navigation
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-      plugins = [
-      ];
-    };
     less.enable = true;
     zk.enable = true;
 

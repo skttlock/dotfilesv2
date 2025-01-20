@@ -7,10 +7,8 @@ _: {
       VISUAL = "vim";
     };
     shellAliases = {
-      hms = "home-manager switch";
-      hme = "home-manager edit";
-      nre = "sudoedit /etc/nixos/configuration.nix";
-      nrs = "nixos-rebuild switch --use-remote-sudo";
+      nrs = "nixos-rebuild switch --flake ~/.config/home-manager/#nixos --use-remote-sudo";
+                        nre = "ranger ~/.config/home-manager/";
       # cd
       # cdb = "cd -";
       # za = "zoxide add .";

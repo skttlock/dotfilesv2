@@ -14,23 +14,14 @@
     ./system.nix
     ./programs.nix
     ../../modules/fonts.nix
-    # Include home-manager
-    # <home-manager/nixos>
-    # Include user config
-    # ./modules/home-manager/home.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # Enable the X11 windowing system.
-  services = {
-    xserver.enable = true;
+  services.xserver = {
+    enable = true;
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
@@ -48,9 +39,6 @@
     isNormalUser = true;
     description = "Joshua Foreman";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   xdg.portal.enable = true;

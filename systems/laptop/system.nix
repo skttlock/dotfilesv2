@@ -57,9 +57,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List services that you want to enable:
   services.flatpak.enable = true;
 

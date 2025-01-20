@@ -11,7 +11,6 @@ _: {
   programs.nvf = {
     enable = true;
     settings.vim = {
-      #settings
       viAlias = true;
       vimAlias = true;
       options.mouse = "";
@@ -20,7 +19,11 @@ _: {
         enable = true;
         # path =
       };
-      # appearance
+
+                        options.tabstop = 4;
+                        options.softtabstop = -1;
+                        options.shiftwidth = 4;
+
       syntaxHighlighting = true;
       visuals = {
         fidget-nvim.enable = true;
@@ -28,7 +31,6 @@ _: {
         indent-blankline.enable = true;
       };
 
-      #plugins
       autopairs.nvim-autopairs.enable = true;
       autocomplete.nvim-cmp.enable = true;
       snippets.luasnip.enable = true;
