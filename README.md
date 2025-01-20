@@ -32,6 +32,7 @@ _Managed with the Nix Home-Manager tool._
 Also known as [nvf](https://github.com/NotAShelf/nvf)
 
 - [ ] misc.
+    - [ ] autoformat is broken
   - [ ] trailing white space character
   - [ ] set spell file
 - [ ] Key binds
