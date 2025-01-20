@@ -35,6 +35,7 @@ Also known as [nvf](https://github.com/NotAShelf/nvf)
     - [ ] autoformat is broken
   - [ ] trailing white space character
   - [ ] set spell file
+  - [ ] search default to case-insensitive
 - [ ] Key binds
   - [ ] `esc` always exits to normal on one press
   - [ ] auto-complete
