@@ -37,12 +37,11 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services = {
+        printing.enable = true;
 
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
+  pulseaudio.enable = false;
+  pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
@@ -53,6 +52,9 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+    };
+  # Enable sound with pipewire.
+  security.rtkit.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

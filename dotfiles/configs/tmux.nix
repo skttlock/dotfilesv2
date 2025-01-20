@@ -1,9 +1,11 @@
-_: {
+{pkgs, ...}: {
     programs.tmux = {
         enable = true;
       keyMode = "vi";
-      plugins = [
+      plugins = with pkgs.tmuxPlugins; [
+            mode-indicator
+            prefix-highlight
+            sidebar
       ];
-
     };
 }
