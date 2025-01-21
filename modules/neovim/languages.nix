@@ -1,4 +1,5 @@
 _: {
+    programs.nvf.settings.vim.lsp.formatOnSave = true;
   programs.nvf.settings.vim.languages = {
     enableLSP = true;
     enableFormat = true;
@@ -11,6 +12,7 @@ _: {
     nu.enable = true;
 
     markdown.enable = true;
+    markdown.extensions.render-markdown-nvim.enable = true;
     html.enable = true;
     css.enable = true;
 

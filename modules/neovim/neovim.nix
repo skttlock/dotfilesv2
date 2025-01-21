@@ -13,17 +13,19 @@ _: {
     settings.vim = {
       viAlias = true;
       vimAlias = true;
-      options.mouse = "";
+      options = {
+        mouse = "";
+        tabstop = 4;
+        softtabstop = -1;
+        shiftwidth = 4;
+            };
       preventJunkFiles = true;
       undoFile = {
         enable = true;
         # path =
       };
-
-                        options.tabstop = 4;
-                        options.softtabstop = -1;
-                        options.shiftwidth = 4;
-
+            lsp.enable = true;
+            #./languages.nix
       syntaxHighlighting = true;
       visuals = {
         fidget-nvim.enable = true;
