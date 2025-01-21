@@ -6,8 +6,8 @@
             tmuxPlugins.mode-indicator
             tmuxPlugins.prefix-highlight
             tmuxPlugins.sidebar
-            tmuxPlugins.tmux-powerline
-            tmuxPlugins.tmux-floax
+            # tmuxPlugins.tmux-powerline
+            # tmuxPlugins.tmux-floax
       ];
     };
 }

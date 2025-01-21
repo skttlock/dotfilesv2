@@ -13,6 +13,7 @@
   environment.systemPackages = with pkgs; [
     git
     cosmic-term
+    zellij
 
     gparted
 
