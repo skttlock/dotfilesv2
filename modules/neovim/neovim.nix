@@ -18,14 +18,14 @@ _: {
         tabstop = 4;
         softtabstop = -1;
         shiftwidth = 4;
-            };
+      };
       preventJunkFiles = true;
       undoFile = {
         enable = true;
         # path =
       };
-            lsp.enable = true;
-            #./languages.nix
+      lsp.enable = true;
+      #./languages.nix
       syntaxHighlighting = true;
       visuals = {
         fidget-nvim.enable = true;
@@ -34,8 +34,18 @@ _: {
       };
 
       autopairs.nvim-autopairs.enable = true;
-      autocomplete.nvim-cmp.enable = true;
-      snippets.luasnip.enable = true;
+      autocomplete = {
+        nvim-cmp = {
+          enable = true;
+          mappings = {
+            close = "<Left>";
+            confirm = "<Right>";
+            next = "<Down>";
+            previous = "<Up>";
+          };
+        };
+      };
+      # snippets.luasnip.enable = true;
 
       tabline = {
         nvimBufferline.enable = true;

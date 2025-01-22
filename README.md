@@ -24,6 +24,7 @@ _Managed with the Nix Home-Manager tool._
 
 - [ ] `zk` (`~/Documents/Zettle`)
 - [ ] `tmux`
+  - meh, `zellij` feels a lot nicer
 - [ ] `ranger`
 - [ ]
 
@@ -32,15 +33,15 @@ _Managed with the Nix Home-Manager tool._
 Also known as [nvf](https://github.com/NotAShelf/nvf)
 
 - [ ] misc.
-    - [ ] autoformat is broken
+  - [ ] autoformat is broken
   - [ ] trailing white space character
   - [ ] set spell file
   - [ ] search default to case-insensitive
 - [ ] Key binds
   - [ ] `esc` always exits to normal on one press
   - [ ] auto-complete
-    - [ ] `up`/`down` navigate auto-complete suggestions
-    - [ ] `right` accept suggestion?
+    - [x] `up`/`down` navigate auto-complete suggestions
+    - [x] `right` accept suggestion?
 - [ ] LuaSnip
   - [ ] add my own snippets _folder_
     - [ ] create some code comment snippets
