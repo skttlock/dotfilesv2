@@ -36,5 +36,6 @@
     godot_4
     # love
     # raylib
+    element-desktop
   ];
 }
