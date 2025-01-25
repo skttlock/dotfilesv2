@@ -1,6 +1,11 @@
 _: {
-  programs.nvf.settings.vim.spellcheck = {
-    enable = true;
-    programmingWordlist.enable = true;
+  programs.nvf.settings.vim = {
+    # additionalRuntimePaths = [
+    #   ./spellfiles/joshua.spl
+    # ];
+    spellcheck = {
+      enable = true;
+      programmingWordlist.enable = true;
+    };
   };
 }
