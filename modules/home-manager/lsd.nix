@@ -3,7 +3,10 @@
     enable = true;
     enableAliases = false;
     settings = {
-      sorting.column = "extension";
+      sorting = {
+        column = "name";
+        dir-grouping = "none";
+      };
     };
   };
 }

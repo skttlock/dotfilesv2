@@ -26,7 +26,7 @@ _Managed with the Nix Home-Manager tool._
 - [ ] `tmux`
   - meh, `zellij` feels a lot nicer
 - [ ] `ranger`
-- [ ]
+- [x] `lsd`
 
 #### NeoVim flake
 
