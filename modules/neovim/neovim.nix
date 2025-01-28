@@ -45,7 +45,7 @@ _: {
           };
         };
       };
-      # snippets.luasnip.enable = true;
+      snippets.luasnip.enable = true;
 
       tabline = {
         nvimBufferline.enable = true;
