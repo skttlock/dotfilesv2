@@ -33,15 +33,20 @@ _Managed with the Nix Home-Manager tool._
 Also known as [nvf](https://github.com/NotAShelf/nvf)
 
 - [ ] misc.
-  - [ ] autoformat is broken
+  - [x] autoformat is broken
   - [ ] trailing white space character
   - [ ] set spell file
   - [ ] search default to case-insensitive
 - [ ] Key binds
   - [ ] `esc` always exits to normal on one press
-  - [ ] auto-complete
+  - [x] auto-complete
     - [x] `up`/`down` navigate auto-complete suggestions
     - [x] `right` accept suggestion?
+  - [ ] surround
+    - [ ] from a visual selection (`v` + motion):
+      - [ ] `s` to enter surround
+        - [ ] `a` to add surrounding character
+        - [ ] `r` to replace surrounding characters
 - [ ] LuaSnip
   - [ ] add my own snippets _folder_
     - [ ] create some code comment snippets

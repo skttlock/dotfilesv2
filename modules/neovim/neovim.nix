@@ -15,9 +15,9 @@ _: {
       vimAlias = true;
       options = {
         mouse = "";
-        tabstop = 4;
+        tabstop = 2;
         softtabstop = -1;
-        shiftwidth = 4;
+        shiftwidth = 2;
       };
       preventJunkFiles = true;
       undoFile = {
@@ -26,11 +26,18 @@ _: {
       };
       lsp.enable = true;
       #./languages.nix
+
+      # appearance
       syntaxHighlighting = true;
       visuals = {
         fidget-nvim.enable = true;
         highlight-undo.enable = true;
         indent-blankline.enable = true;
+      };
+      ui = {
+        borders.plugins.which-key.enable = true;
+        # modes-nvim.enable = true;
+        # nvim-ufo.enable = true;
       };
 
       autopairs.nvim-autopairs.enable = true;
