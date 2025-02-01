@@ -20,7 +20,7 @@
 
     fragments
 
-    # should go to home.nix
+    # some of these should go to home.nix
     banana-cursor
     discord
     calibre
@@ -32,6 +32,9 @@
     lyx
     onlyoffice-desktopeditors
     libreoffice-qt6-fresh
+
+    shotcut
+    libsForQt5.kdenlive
 
     godot_4
     # love
