@@ -37,7 +37,7 @@ _: {
       ui = {
         borders.plugins.which-key.enable = true;
         # modes-nvim.enable = true;
-        nvim-ufo.enable = true;
+        # nvim-ufo.enable = true;
         smartcolumn.enable = true;
       };
 
