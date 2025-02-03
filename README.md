@@ -47,6 +47,11 @@ Also known as [nvf](https://github.com/NotAShelf/nvf)
       - [ ] `s` to enter surround
         - [ ] `a` to add surrounding character
         - [ ] `r` to replace surrounding characters
+  - [ ] fold
+    - nvim-ufo?
+      - folds all on save
+        - likely because of formatting on save
+        - set fold level to 0?
 - [ ] LuaSnip
   - [ ] add my own snippets _folder_
     - [ ] create some code comment snippets
