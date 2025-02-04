@@ -9,8 +9,8 @@ _Managed with the Nix Home-Manager tool._
 ## To-Do
 
 - [x] restructure
-- [ ] update file links per new structure
-- [ ] update inputs to... unstable or 24.11
+- [x] update file links per new structure
+- [-] update inputs to... unstable or 24.11
   - [ ] update nixpkgs/NixOS
   - [ ] update home-manager
 - [ ] implement flake
@@ -27,6 +27,11 @@ _Managed with the Nix Home-Manager tool._
   - meh, `zellij` feels a lot nicer
 - [ ] `ranger`
 - [x] `lsd`
+- [ ] `bat`
+  - [ ] color scheme?
+- [ ] `sops-nix` to hold secrets such as `.ssh` keys
+- [ ] "profile" stuff?
+  - [ ] profile picture?
 
 #### NeoVim flake
 

@@ -13,8 +13,10 @@
   # System package installs
   environment.systemPackages = with pkgs; [
     git
-    cosmic-term
+    bat
     zellij
+
+    cosmic-term
 
     gparted
 
