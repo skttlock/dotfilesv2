@@ -1,7 +1,10 @@
 let
   # pin version to 24.11
   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-24.11";
-  pkgs = import nixpkgs { config = {}; overlays = []; };
+  pkgs = import nixpkgs {
+    config = {};
+    overlays = [];
+  };
 
   devPackages = with pkgs; [
     janet
@@ -9,9 +12,10 @@ let
   ];
 
   aliases = [
-    { alias = "repl"; command = "janet"; }
-    { alias = "ll"; command = "ls -la"; }
-    { alias = "gs"; command = "git status"; }
+    {
+      alias = "repl";
+      command = "janet";
+    }
   ];
 in
   pkgs.mkShell {
@@ -19,21 +23,22 @@ in
     SHELLTYPE = "dev";
 
     shellHook = ''
-      echo "------------------------";
-      echo "Entered $SHELLTYPE environment in:";
-      pwd;
-      echo "Using these packages:";
-      for pkg in ${pkgs.lib.concatStringsSep " " (map (pkg: "${pkg.pname}-${pkg.version}") devPackages)}; do
-        echo "Package: $pkg"
-      done
-      echo "";
-      echo "           ==           ";
-      echo "";
-      echo "With these aliases:";
-    ${builtins.concatStringsSep "\n" (map (def: ''
-      alias ${def.alias}='${def.command}'
-      echo "Alias set: ${def.alias} -> ${def.command}"
-    '') aliases)}
-      echo "------------------------";
-      '';
+        echo "------------------------";
+        echo "Entered $SHELLTYPE environment in:";
+        pwd;
+        echo "Using these packages:";
+        for pkg in ${pkgs.lib.concatStringsSep " " (map (pkg: "${pkg.pname}-${pkg.version}") devPackages)}; do
+          echo "Package: $pkg"
+        done
+        echo "";
+        echo "           ==           ";
+        echo "";
+        echo "With these aliases:";
+      ${builtins.concatStringsSep "\n" (map (def: ''
+          alias ${def.alias}='${def.command}'
+          echo "Alias set: ${def.alias} -> ${def.command}"
+        '')
+        aliases)}
+        echo "------------------------";
+    '';
   }

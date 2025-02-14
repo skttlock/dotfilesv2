@@ -30,6 +30,8 @@ _Managed with the Nix Home-Manager tool._
 - [ ] `bat`
   - [ ] color scheme?
 - [ ] `sops-nix` to hold secrets such as `.ssh` keys
+- [ ] `please`
+  - [ ] package for nix
 - [ ] "profile" stuff?
   - [ ] profile picture?
 
