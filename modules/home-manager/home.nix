@@ -86,6 +86,5 @@
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-    zathura.enable = false; # document viewer, needs config
   };
 }

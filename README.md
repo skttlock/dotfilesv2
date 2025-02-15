@@ -33,7 +33,19 @@ _Managed with the Nix Home-Manager tool._
 - [ ] `please`
   - [ ] package for nix
 - [ ] "profile" stuff?
+
   - [ ] profile picture?
+
+  ### TUI-Only Config
+
+  - [ ] `bat`
+  - [ ] `please`
+  - [ ] `ranger`
+  - [ ] `nvf`
+  - [ ] `git`
+  - [ ] `github`
+  - [ ] `zellij`
+  - [ ] `zk`
 
 #### NeoVim flake
 
