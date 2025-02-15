@@ -46,6 +46,10 @@ _Managed with the Nix Home-Manager tool._
   - [ ] `github`
   - [ ] `zellij`
   - [ ] `zk`
+  - [ ] a web browser
+    - [ ] `lynx`
+    - `w3m`
+    - `browsh`?
 
 #### NeoVim flake
 
@@ -81,3 +85,4 @@ Also known as [nvf](https://github.com/NotAShelf/nvf)
     - [ ] todo.txt snippets
       - [ ] blank entry
       - [ ] entry w/ deadline
+- [ ] REPL
