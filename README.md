@@ -13,18 +13,20 @@ _Managed with the Nix Home-Manager tool._
 - [-] update inputs to... unstable or 24.11
   - [ ] update nixpkgs/NixOS
   - [ ] update home-manager
-- [ ] implement flake
-  - [ ] test without home-manager
-  - [ ] integrate home-manager
-  - [ ] test with home-manager
+- [x] implement flake
+  - [x] test without home-manager
+  - [x] integrate home-manager
+  - [x] test with home-manager
 - [ ] check for selective update capability with flake usage
       (`home-manager switch`)
+- [ ] scripts get linked appropriately
 
 ### Configuration
 
 - [ ] `zk` (`~/Documents/Zettle`)
-- [ ] `tmux`
-  - meh, `zellij` feels a lot nicer
+- [ ] `zellij`
+  - [ ] aliases for common sessions
+  - [ ] layouts??
 - [ ] `ranger`
 - [x] `lsd`
 - [ ] `bat`
@@ -47,7 +49,7 @@ _Managed with the Nix Home-Manager tool._
   - [ ] `zellij`
   - [ ] `zk`
   - [ ] a web browser
-    - [ ] `lynx`
+    - `lynx`
     - `w3m`
     - `browsh`?
 
@@ -85,4 +87,5 @@ Also known as [nvf](https://github.com/NotAShelf/nvf)
     - [ ] todo.txt snippets
       - [ ] blank entry
       - [ ] entry w/ deadline
-- [ ] REPL
+- [ ] REPL (via conjure)
+- [ ] `zk`.nvim
