@@ -7,12 +7,12 @@ _: {
       VISUAL = "vim";
     };
     shellAliases = {
-      nrs = "nixos-rebuild switch --flake ~/.config/home-manager/#nixos --use-remote-sudo";
-      nre = "ranger ~/.config/home-manager/";
       # cd
       # cdb = "cd -";
+
       # za = "zoxide add .";
       # za = "z --searchAdjacent";
+
       # lsd
       lsa = "lsd --almost-all";
       lst = "lsd --tree --depth=1";
@@ -22,6 +22,8 @@ _: {
       # nix
       nix-command = "nix --extra-experimental-features nix-command";
       ns = "nix-shell";
+      nrs = "nixos-rebuild switch --flake ~/.config/home-manager/#nixos --use-remote-sudo";
+      nre = "ranger ~/.config/home-manager/";
       # zellij
       zel = "zellij";
     };
