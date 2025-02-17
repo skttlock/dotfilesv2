@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   # network via ssh
   programs.ssh = {
     enable = true;

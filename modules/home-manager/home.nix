@@ -1,10 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./terminal.nix
-    ./bash.nix
-    ./git.nix
-    ./ssh.nix
-    ./lsd.nix
   ];
   fonts.fontconfig.enable = true;
 
@@ -62,7 +58,7 @@
         recursive = true;
         executable = false;
       };
-      "/.bin/scripts" = {
+      "./bin/scripts" = {
         source = ../../dotfiles/scripts;
         recursive = true;
         executable = true;

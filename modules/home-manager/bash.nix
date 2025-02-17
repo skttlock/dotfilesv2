@@ -8,7 +8,7 @@ _: {
     };
     shellAliases = {
       nrs = "nixos-rebuild switch --flake ~/.config/home-manager/#nixos --use-remote-sudo";
-                        nre = "ranger ~/.config/home-manager/";
+      nre = "ranger ~/.config/home-manager/";
       # cd
       # cdb = "cd -";
       # za = "zoxide add .";
@@ -22,6 +22,8 @@ _: {
       # nix
       nix-command = "nix --extra-experimental-features nix-command";
       ns = "nix-shell";
+      # zellij
+      zel = "zellij";
     };
     profileExtra = ''
       # .bash_profile

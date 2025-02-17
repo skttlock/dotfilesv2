@@ -1,7 +1,11 @@
 _: {
-    imports = [
-        ../../dotfiles/configs/tmux.nix
-    ];
+  imports = [
+    ./bash.nix
+    ./zellij.nix
+    ./git.nix
+    ./ssh.nix
+    ./lsd.nix
+  ];
   # ----------------------
   # | TERMINAL UTILITIES |
   # ----------------------

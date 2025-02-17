@@ -12,9 +12,7 @@
 
   # System package installs
   environment.systemPackages = with pkgs; [
-    git
     bat
-    zellij
 
     cosmic-term
 
